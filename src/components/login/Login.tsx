@@ -11,14 +11,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { apiLogin } from '../../remote/e-commerce-api/userService';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    apiLogin(`${data.get('email')}`, `${data.get('password')}`)
+    const response = await apiLogin(`${data.get('email')}`, `${data.get('password')}`);
+    if (response.status >= 200 && response.status < 300) navigate('/')
   };
 
   return (
