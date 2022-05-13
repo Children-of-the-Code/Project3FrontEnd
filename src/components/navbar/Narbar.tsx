@@ -1,5 +1,5 @@
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -19,28 +19,6 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-`;
-
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-`;
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-`;
-
-const Input = styled.input`
-  border: none;
-`;
-
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
 `;
 
 const Logo = styled.h1`
@@ -66,12 +44,12 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-        <Logo>Revature Swag Shop</Logo>
+        <Logo onClick={() => {navigate('/')}}>Revature Swag Shop</Logo>
         </Left>
         <Right>
-          <MenuItem onClick={() => {navigate('register')}}>REGISTER</MenuItem>
-          <MenuItem onClick={() => {navigate('login')}}>SIGN IN</MenuItem>
-          <MenuItem>
+          <MenuItem onClick={() => {navigate('/register')}}>REGISTER</MenuItem>
+          <MenuItem onClick={() => {navigate('/login')}}>SIGN IN</MenuItem>
+          <MenuItem onClick={() => {navigate('/cart')}}>
             <Badge color="primary">
               <ShoppingCartOutlined />
             </Badge>
