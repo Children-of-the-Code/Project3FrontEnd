@@ -1,34 +1,62 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { apiPurchase } from '../../remote/e-commerce-api/productService';
+import Address from '../../models/Address';
+import PaymentDetail from '../../models/PaymentDetail';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+const products = [
+  {
+    name: 'Product 1',
+    desc: 'A nice thing',
+    price: '$9.99',
+  },
+  {
+    name: 'Product 2',
+    desc: 'Another thing',
+    price: '$3.45',
+  },
+  {
+    name: 'Product 3',
+    desc: 'Something else',
+    price: '$6.51',
+  },
+  {
+    name: 'Product 4',
+    desc: 'Best thing of all',
+    price: '$14.11',
+  },
+  { name: 'Shipping', desc: '', price: 'Free' },
+];
+let address = {
+  firstName: "",
+  lastName: "",
+  address1: "",
+  address2: "",
+  city: "",
+  state: "",
+  zip: "",
+  country: ""
+};
+let paymentDetail = [
+  { name: 'Card type', detail: 'Visa' },
+  { name: 'Card holder', detail: 'Mr John Smith' },
+  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+  { name: 'Expiry date', detail: '04/2024' },
+];
 
 const theme = createTheme();
 
@@ -37,11 +65,35 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if (activeStep === steps.length) {
+      //apiPurchase()
+    }
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const updateAddress = (newAddress: Address) => {
+    address = newAddress
+  }
+
+  const updatePayment = (newPaymentDetail: PaymentDetail[]) => {
+    paymentDetail = newPaymentDetail
+  }
+
+  function getStepContent(step: number) {
+    switch (step) {
+      case 0:
+        return <AddressForm handleNext={handleNext} updateAddress={updateAddress} />;
+      case 1:
+        return <PaymentForm handleNext={handleNext} handleBack={handleBack} updatePayment={updatePayment} />;
+      case 2:
+        return <Review handleNext={handleNext} handleBack={handleBack} products={products} payments={paymentDetail} address={address} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,7 +140,7 @@ export default function Checkout() {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
@@ -101,7 +153,7 @@ export default function Checkout() {
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
-                </Box>
+                </Box> */}
               </React.Fragment>
             )}
           </React.Fragment>

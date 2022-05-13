@@ -1,13 +1,8 @@
-import eCommerceClient from "./eCommerceClient";
+import eCommerceClient, { eCommerceApiResponse } from "./eCommerceClient";
 
 const baseURL = "/user"
 
-export interface userServiceResponse {
-    status: number;
-    payload: any;
-}
-
-export const apiLogin = async (email: string, password: string): Promise<userServiceResponse> => {
+export const apiLogin = async (email: string, password: string): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.post<any>(
         `${baseURL}/login`,
         { email: email, password: password }
@@ -15,7 +10,7 @@ export const apiLogin = async (email: string, password: string): Promise<userSer
     return { status: response.status, payload: response.data };
 }
 
-export const apiRegister = async (firstName: string, lastName: string, email: string, password: string): Promise<userServiceResponse> => {
+export const apiRegister = async (firstName: string, lastName: string, email: string, password: string): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.post<any>(
         `${baseURL}/register`,
         { firstname: firstName, lastName: lastName, email: email, password: password }
