@@ -19,26 +19,34 @@ const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
 const products = [
   {
+    id: 1,
     name: 'Product 1',
     desc: 'A nice thing',
     price: '$9.99',
+    img: ''
   },
   {
+    id: 2,
     name: 'Product 2',
     desc: 'Another thing',
     price: '$3.45',
+    img: ''
   },
   {
+    id: 3,
     name: 'Product 3',
     desc: 'Something else',
     price: '$6.51',
+    img: ''
   },
   {
+    id: 4,
     name: 'Product 4',
     desc: 'Best thing of all',
     price: '$14.11',
+    img: ''
   },
-  { name: 'Shipping', desc: '', price: 'Free' },
+  { id: 5, name: 'Shipping', desc: '', price: 'Free', img: '' },
 ];
 let address = {
   firstName: "",
@@ -105,7 +113,7 @@ export default function Checkout() {
       >
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            Company name
+            Revature Swag Shop
           </Typography>
         </Toolbar>
       </AppBar>
@@ -136,20 +144,6 @@ export default function Checkout() {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
-                </Box> */}
               </React.Fragment>
             )}
           </React.Fragment>
