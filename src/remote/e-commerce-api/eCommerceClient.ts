@@ -9,4 +9,9 @@ const eCommerceClient = axios.create({
   },
 });
 
+export interface eCommerceApiResponse {
+  status: number;
+  payload: any;
+}
+
 export default eCommerceClient;
