@@ -18,10 +18,17 @@ export default function PaymentForm(props: paymentFormProps) {
     const data = new FormData(event.currentTarget);
     props.updatePayment(
       [
-        
+        {name: "Card Type", detail: `Visa`},
+        {name: "Card Holder", detail: `${data.get('cardName')}`},
+        {name: "Card Number", detail: formatCardNumber(`${data.get('cardNumber')}`)},
+        {name: "Expiry Date", detail: `${data.get('expDate')}`}
       ]
     )
     props.handleNext()
+  }
+
+  const formatCardNumber = (cardNumber: string) => {
+    return `xxxx-xxxx-xxxx-${cardNumber.slice(-4)}`
   }
 
   return (
@@ -35,6 +42,7 @@ export default function PaymentForm(props: paymentFormProps) {
             <TextField
               required
               id="cardName"
+              name="cardName"
               label="Name on card"
               fullWidth
               autoComplete="cc-name"
@@ -45,6 +53,7 @@ export default function PaymentForm(props: paymentFormProps) {
             <TextField
               required
               id="cardNumber"
+              name="cardNumber"
               label="Card number"
               fullWidth
               autoComplete="cc-number"
@@ -55,6 +64,7 @@ export default function PaymentForm(props: paymentFormProps) {
             <TextField
               required
               id="expDate"
+              name="expDate"
               label="Expiry date"
               fullWidth
               autoComplete="cc-exp"
@@ -65,6 +75,7 @@ export default function PaymentForm(props: paymentFormProps) {
             <TextField
               required
               id="cvv"
+              name="cvv"
               label="CVV"
               helperText="Last three digits on signature strip"
               fullWidth

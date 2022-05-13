@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { apiPurchase } from '../../remote/e-commerce-api/productService';
 import Address from '../../models/Address';
 import PaymentDetail from '../../models/PaymentDetail';
 
@@ -52,10 +51,10 @@ let address = {
   country: ""
 };
 let paymentDetail = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
+  { name: 'Card type', detail: '' },
+  { name: 'Card holder', detail: '' },
+  { name: 'Card number', detail: '' },
+  { name: 'Expiry date', detail: '' },
 ];
 
 const theme = createTheme();
@@ -65,9 +64,6 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-    if (activeStep === steps.length) {
-      //apiPurchase()
-    }
   };
 
   const handleBack = () => {

@@ -8,6 +8,7 @@ import Product from '../../models/Product';
 import PaymentDetail from '../../models/PaymentDetail';
 import Address from '../../models/Address';
 import { Box, Button } from '@mui/material';
+import { apiPurchase } from '../../remote/e-commerce-api/productService';
 
 
 
@@ -20,6 +21,13 @@ interface reviewProps {
 }
 
 export default function Review(props: reviewProps) {
+
+  const handleSubmit = (event: React.MouseEvent) => {
+    event.preventDefault();
+    //apiPurchase()
+    props.handleNext()
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -71,7 +79,7 @@ export default function Review(props: reviewProps) {
         </Button>
         <Button
           variant="contained"
-          onClick={props.handleNext}
+          onClick={handleSubmit}
           sx={{ mt: 3, ml: 1 }}
         >
           Place order
