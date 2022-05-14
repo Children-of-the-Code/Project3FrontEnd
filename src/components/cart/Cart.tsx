@@ -27,14 +27,6 @@ const TopButton = styled.button`
   cursor: pointer;
 `;
 
-const TopTexts = styled.div`
-`;
-const TopText = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0px 10px;
-`;
-
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
@@ -161,17 +153,11 @@ export const Cart = () => {
                   <ProductId>
                     <b>ID:</b> 93813718293
                   </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add />
                   <ProductAmount>2</ProductAmount>
-                  <Remove />
                 </ProductAmountContainer>
                 <ProductPrice>$ 30</ProductPrice>
               </PriceDetail>
@@ -187,17 +173,11 @@ export const Cart = () => {
                   <ProductId>
                     <b>ID:</b> 93813718293
                   </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add />
                   <ProductAmount>1</ProductAmount>
-                  <Remove />
                 </ProductAmountContainer>
                 <ProductPrice>$ 20</ProductPrice>
               </PriceDetail>
