@@ -1,10 +1,11 @@
 import {
-    FavoriteBorderOutlined,
     SearchOutlined,
     ShoppingCartOutlined,
   } from "@material-ui/icons";
+import { useContext } from "react";
   import styled from "styled-components";
-import ProductItem from "../../models/ProductItem";
+import { CartContext } from "../../context/cart.context";
+import Product from "../../models/Product";
   
   const Info = styled.div`
     opacity: 0;
@@ -67,18 +68,33 @@ import ProductItem from "../../models/ProductItem";
   `;
   
   interface productProps {
-      product: ProductItem,
+      product: Product,
       key: number
   }
 
-  export const Product = (props: productProps) => {
+  export const ProductCard = (props: productProps) => {
+    const { cart, setCart } = useContext(CartContext);
+
+    const addItemToCart = (product: Product) => {
+
+      const newCart = [...cart]
+      const index = newCart.findIndex((searchProduct) => {
+        return searchProduct.id === product.id
+      })
+
+      if (index === -1) newCart.push(product)
+      else newCart[index].quantity += product.quantity
+
+      setCart(newCart)
+    }
+
     return (
       <Container>
         <Circle />
-        <Image src={props.product.img} />
+        <Image src={props.product.image} />
         <Info>
           <Icon>
-            <ShoppingCartOutlined />
+            <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: 1})}} />
           </Icon>
           <Icon>
             <SearchOutlined />

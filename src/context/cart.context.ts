@@ -1,9 +1,9 @@
 import React from 'react';
-import ProductItem from '../models/ProductItem';
+import Product from '../models/Product';
 
 interface CartContextState {
-    cart: ProductItem[];
-    setCart: (cart: ProductItem[]) => void;
+    cart: Product[];
+    setCart: (cart: Product[]) => void;
 }
 
 // Define the Cart Context

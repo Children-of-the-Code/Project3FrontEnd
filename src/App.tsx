@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import { CartContext } from './context/cart.context';
-import ProductItem from './models/ProductItem';
+import ProductItem from './models/Product';
 import { AppRoutes } from './router/AppRoutes';
 
 function App() {

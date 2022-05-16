@@ -14,39 +14,14 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Address from '../../models/Address';
 import PaymentDetail from '../../models/PaymentDetail';
+import { useContext } from 'react';
+import { CartContext } from '../../context/cart.context';
+import Product from '../../models/Product';
+import { useNavigate } from 'react-router-dom';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-const products = [
-  {
-    id: 1,
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-    img: ''
-  },
-  {
-    id: 2,
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-    img: ''
-  },
-  {
-    id: 3,
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-    img: ''
-  },
-  {
-    id: 4,
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-    img: ''
-  },
-  { id: 5, name: 'Shipping', desc: '', price: 'Free', img: '' },
+const products: Product[] = [
 ];
 let address = {
   firstName: "",
@@ -69,6 +44,8 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { cart, setCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -93,7 +70,7 @@ export default function Checkout() {
       case 1:
         return <PaymentForm handleNext={handleNext} handleBack={handleBack} updatePayment={updatePayment} />;
       case 2:
-        return <Review handleNext={handleNext} handleBack={handleBack} products={products} payments={paymentDetail} address={address} />;
+        return <Review handleNext={handleNext} handleBack={handleBack} payments={paymentDetail} address={address} />;
       default:
         throw new Error('Unknown step');
     }
@@ -112,7 +89,7 @@ export default function Checkout() {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap onClick={() => navigate('/')}>
             Revature Swag Shop
           </Typography>
         </Toolbar>

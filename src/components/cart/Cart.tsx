@@ -1,6 +1,7 @@
-import { Add, Remove } from "@material-ui/icons";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CartContext } from "../../context/cart.context";
 import Navbar from "../navbar/Narbar";
 
 const Container = styled.div``;
@@ -130,6 +131,8 @@ const Button = styled.button`
 `;
 
 export const Cart = () => {
+  const { cart, setCart } = useContext(CartContext);
+
   const navigate = useNavigate();
 
   return (
@@ -143,51 +146,40 @@ export const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <ProductAmount>2</ProductAmount>
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> HAKURA T-SHIRT
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <ProductAmount>1</ProductAmount>
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {
+              cart.map((product)=> (
+                <>
+                  <Product>
+                    <ProductDetail>
+                      <Image src={product.image} />
+                      <Details>
+                        <ProductName>
+                          <b>Product:</b> {product.name}
+                        </ProductName>
+                        <ProductId>
+                          <b>ID:</b> {product.id}
+                        </ProductId>
+                      </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                      <ProductAmountContainer>
+                        <ProductAmount> {product.quantity} </ProductAmount>
+                      </ProductAmountContainer>
+                      <ProductPrice>$ {product.price}</ProductPrice>
+                    </PriceDetail>
+                  </Product>
+                  <Hr/>
+                </>
+              ))
+            }
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ 
+                  {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+              </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -199,7 +191,9 @@ export const Cart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ 
+                {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+              </SummaryItemPrice>
             </SummaryItem>
             <Button onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
           </Summary>
