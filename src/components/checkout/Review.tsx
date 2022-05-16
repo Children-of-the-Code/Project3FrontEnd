@@ -9,22 +9,29 @@ import PaymentDetail from '../../models/PaymentDetail';
 import Address from '../../models/Address';
 import { Box, Button } from '@mui/material';
 import { apiPurchase } from '../../remote/e-commerce-api/productService';
+import { CartContext } from '../../context/cart.context';
 
 
 
 interface reviewProps {
   handleBack: () => void
   handleNext: () => void
-  products: Product[]
   address: Address
   payments: PaymentDetail[]
 }
 
 export default function Review(props: reviewProps) {
 
+  const {cart, setCart} = React.useContext(CartContext)
+
   const handleSubmit = (event: React.MouseEvent) => {
     event.preventDefault();
-    //apiPurchase()
+    let productPurchaseDtos = cart.map((product) => ({
+      id: product.id,
+      quantity: product.quantity
+    }))
+    apiPurchase(productPurchaseDtos)
+    setCart([])
     props.handleNext()
   }
 
@@ -34,16 +41,16 @@ export default function Review(props: reviewProps) {
         Order summary
       </Typography>
       <List disablePadding>
-        {props.products.map((product) => (
+        {cart.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText primary={`${product.name} x${product.quantity}`} secondary={product.description} />
+            <Typography variant="body2">{product.price * product.quantity}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            $ {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
           </Typography>
         </ListItem>
       </List>

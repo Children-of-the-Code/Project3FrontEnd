@@ -14,31 +14,14 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Address from '../../models/Address';
 import PaymentDetail from '../../models/PaymentDetail';
+import { useContext } from 'react';
+import { CartContext } from '../../context/cart.context';
+import Product from '../../models/Product';
+import { useNavigate } from 'react-router-dom';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
+const products: Product[] = [
 ];
 let address = {
   firstName: "",
@@ -61,6 +44,8 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { cart, setCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -85,7 +70,7 @@ export default function Checkout() {
       case 1:
         return <PaymentForm handleNext={handleNext} handleBack={handleBack} updatePayment={updatePayment} />;
       case 2:
-        return <Review handleNext={handleNext} handleBack={handleBack} products={products} payments={paymentDetail} address={address} />;
+        return <Review handleNext={handleNext} handleBack={handleBack} payments={paymentDetail} address={address} />;
       default:
         throw new Error('Unknown step');
     }
@@ -104,8 +89,8 @@ export default function Checkout() {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
+          <Typography variant="h6" color="inherit" noWrap onClick={() => navigate('/')}>
+            Revature Swag Shop
           </Typography>
         </Toolbar>
       </AppBar>
@@ -136,20 +121,6 @@ export default function Checkout() {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
-                </Box> */}
               </React.Fragment>
             )}
           </React.Fragment>

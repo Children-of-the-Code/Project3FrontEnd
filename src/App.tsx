@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import { CartContext } from './context/cart.context';
-import { Product } from './models/product';
+import ProductItem from './models/Product';
 import { AppRoutes } from './router/AppRoutes';
 
 function App() {
-  const [cart, setCart] = useState<Product[]>([]);
+  const [cart, setCart] = useState<ProductItem[]>([]);
   const value = { cart, setCart };
 
   return (

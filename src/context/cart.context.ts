@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product } from '../models/product';
+import Product from '../models/Product';
 
 interface CartContextState {
     cart: Product[];
