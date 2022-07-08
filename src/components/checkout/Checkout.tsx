@@ -18,6 +18,8 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/cart.context';
 import Product from '../../models/Product';
 import { useNavigate } from 'react-router-dom';
+import { StayPrimaryLandscape } from '@material-ui/icons';
+import Colonel from '../../assets/colonel.png';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -40,7 +42,16 @@ let paymentDetail = [
   { name: 'Expiry date', detail: '' },
 ];
 
-const theme = createTheme();
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#8CC63E"
+    },
+    secondary: {
+      main: "#fac748"
+    }
+  }
+});
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -77,7 +88,7 @@ export default function Checkout() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -89,8 +100,16 @@ export default function Checkout() {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap onClick={() => navigate('/')}>
-            Revature Swag Shop
+          <img src={Colonel} alt="Logo" height="60px"/>
+          <Typography variant="h6" noWrap onClick={() => navigate('/')} sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'roboto',
+              fontWeight: 700,
+              color: 'primary.main',
+            
+            }}>
+            Colonel Kernel
           </Typography>
         </Toolbar>
       </AppBar>

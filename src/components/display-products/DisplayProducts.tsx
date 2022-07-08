@@ -23,7 +23,7 @@ export const DisplayProducts = () => {
     }
     fetchData()
   }, [])
-  // const products: Product[] = [
+  //    const products: Product[] = [
   //   {
   //       id:1,
   //       image:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
