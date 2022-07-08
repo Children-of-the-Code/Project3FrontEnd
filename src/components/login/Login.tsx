@@ -9,11 +9,20 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { apiLogin } from '../../remote/e-commerce-api/authService';
 import { useNavigate } from 'react-router-dom';
 
-const theme = createTheme();
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#8CC63E"
+    },
+    secondary: {
+      main: "#fac748"
+    }
+  }
+});
 
 export default function Login() {
   const navigate = useNavigate();
@@ -26,7 +35,7 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -68,9 +77,9 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2}}
             >
-              Sign In
+              Report for Duty!
             </Button>
             <Grid container>
               <Grid item>
@@ -82,6 +91,7 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+      </ThemeProvider>
+  
   );
 }

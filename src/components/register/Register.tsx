@@ -13,7 +13,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { apiRegister } from '../../remote/e-commerce-api/authService';
 import { useNavigate } from 'react-router-dom';
 
-const theme = createTheme();
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#8CC63E"
+    },
+    secondary: {
+      main: "#fac748"
+    }
+  }
+});
 
 export default function Register() {
   const navigate = useNavigate(); 
@@ -26,7 +35,7 @@ export default function Register() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -94,7 +103,7 @@ export default function Register() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Enlist Now!
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

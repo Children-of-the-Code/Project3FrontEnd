@@ -3,6 +3,9 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Colonel from '../../assets/colonel.png';
+
+
 
 const Container = styled.div`
   height: 60px;
@@ -23,6 +26,8 @@ const Left = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  color: #8CC63E;
+
 `;
 const Right = styled.div`
   flex: 1;
@@ -35,6 +40,7 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  color: #8CC63E;
 `;
 
 const Navbar = () => {
@@ -44,7 +50,8 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-        <Logo onClick={() => {navigate('/')}}>Revature Swag Shop</Logo>
+        <img src={Colonel} alt="Logo" height="60px"/>
+        <Logo onClick={() => {navigate('/')}}>   Colonel Kernel</Logo>
         </Left>
         <Right>
           <MenuItem onClick={() => {navigate('/register')}}>REGISTER</MenuItem>
