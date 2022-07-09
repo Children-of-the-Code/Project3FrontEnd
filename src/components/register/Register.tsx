@@ -30,7 +30,7 @@ export default function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const response = await apiRegister(`${data.get('firstName')}`, `${data.get('lastName')}`, `${data.get('email')}`, `${data.get('password')}`)
+    const response = await apiRegister(`${data.get('email')}`,`${data.get('firstName')}`, `${data.get('lastName')}`, `${data.get('password')}`)
     if (response.status >= 200 && response.status < 300) navigate('/login')
   };
 
@@ -55,14 +55,14 @@ export default function Register() {
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                <TextField                  
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  name="firstName"
                   autoFocus
+                  autoComplete="given-name"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
