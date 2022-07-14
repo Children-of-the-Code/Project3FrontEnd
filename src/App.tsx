@@ -3,7 +3,6 @@ import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
 import './App.css';
 import { CartContext } from './context/cart.context';
 import ProductItem from './models/Product';
-import{ReactSession} from 'react-client-session';
 import { apiLogout, apiSession } from './remote/e-commerce-api/authService';
 import { Route, Routes, HashRouter } from "react-router-dom";
 import { Cart } from './components/cart/Cart';
@@ -79,7 +78,6 @@ useEffect(()=>{
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </CartContext.Provider>
-
     </HashRouter>
   )
 }
