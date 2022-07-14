@@ -70,11 +70,10 @@ useEffect(()=>{
           {login.logged&&
           <Route path="/" element={<DisplayProducts />} />
           }
-          {login.logged===false&&
+          {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
-          }
-          {login.logged===false&&
             <Route path="/register" element={<Register />} />
+            </>
           }
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />

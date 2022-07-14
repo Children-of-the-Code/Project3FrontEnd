@@ -45,6 +45,7 @@ const MenuItem = styled.div`
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
   const navigate = useNavigate();
+  
 
   return (
     <Container>
@@ -54,16 +55,13 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
         <Logo onClick={() => {navigate('/')}}>   Colonel Kernel</Logo>
         </Left>
         <Right>
-          {login===false&&
+          {login===false&&<>
           <MenuItem onClick={() => {navigate('/register')}}>REGISTER</MenuItem>
-          }
-          {login===false&&
           <MenuItem onClick={() => {navigate('/login')}}>SIGN IN</MenuItem>
+          </>
           }
           {login&&
-          <div>
             <button onClick={event=>handleClick()}>Logout</button>
-          </div>
           }
           <MenuItem onClick={() => {navigate('/cart')}}>
             <Badge color="primary">
