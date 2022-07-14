@@ -16,6 +16,7 @@ export const DisplayProducts = () => {
 
   const [products, setProducts] = useState<Product[]>([])
 
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await apiGetAllProducts()
@@ -76,7 +77,6 @@ export const DisplayProducts = () => {
 
   return (
     <React.Fragment>
-        <Navbar/>
         <Container>
         {products.map((item) => (
             <ProductCard product={item} key={item.id} />

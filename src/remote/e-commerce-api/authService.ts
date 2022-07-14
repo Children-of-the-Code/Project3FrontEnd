@@ -24,3 +24,10 @@ export const apiRegister = async ( email: string, firstName: string, lastName: s
     );
     return { status: response.status, payload: response.data };
 }
+
+export const apiSession = async():Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get(
+        `${baseURL}/session`
+    );
+    return { status: response.status, payload: response.data };
+}

@@ -23,8 +23,11 @@ const customTheme = createTheme({
     }
   }
 });
+interface Logger{
+  logged:()=>void
+}
 
-export default function Login() {
+export default function Login({logged}:Logger) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,6 +35,7 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     const response = await apiLogin(`${data.get('email')}`, `${data.get('password')}`);
     if (response.status >= 200 && response.status < 300) navigate('/')
+    logged()
   };
 
   return (
