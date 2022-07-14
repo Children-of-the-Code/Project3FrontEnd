@@ -101,5 +101,6 @@ import Product from "../../models/Product";
           </Icon>
         </Info>
       </Container>
+      
     );
   };
