@@ -142,7 +142,7 @@ export const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
+  
       <Wrapper>
         <Title>YOUR RUCK!</Title>
         <Top>
