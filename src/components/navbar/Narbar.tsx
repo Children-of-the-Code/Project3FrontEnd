@@ -61,7 +61,7 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>
           }
           {login&&
-            <button onClick={event=>handleClick()}>Logout</button>
+            <MenuItem onClick={event=>handleClick()}>Logout</MenuItem>
           }
           <MenuItem onClick={() => {navigate('/cart')}}>
             <Badge color="primary">
