@@ -53,7 +53,9 @@ useEffect(()=>{
   
   fetchData()
   
-})
+  console.log(login)
+},[login.id]
+  )
 
   return (
     <HashRouter>
