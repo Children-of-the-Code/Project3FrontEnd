@@ -75,13 +75,13 @@ export const DisplayProducts = () => {
   // ]
 
   return (
-    <React.Fragment>
-        <Container>
+    <>
+        <Container>   
         {products.map((item) => (
             <ProductCard product={item} key={item.id}/>
         ))}
         </Container>
-    </React.Fragment>
+    </>
     
   );
 };
