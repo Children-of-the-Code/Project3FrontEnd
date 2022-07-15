@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../../context/cart.context";
-import Navbar from "../navbar/Narbar";
-
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -11,8 +9,10 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
+  font-weight: 600;
   text-align: center;
+  color: #8CC63E;
+  
 `;
 
 const Top = styled.div`
@@ -26,6 +26,8 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
+  background-color: #8CC63E;
+  color: #fac748;
 `;
 
 const Bottom = styled.div`
@@ -110,6 +112,7 @@ const Summary = styled.div`
 
 const SummaryTitle = styled.h1`
   font-weight: 200;
+  color: '#8CC63E'
 `;
 
 const SummaryItem = styled.div`
@@ -125,8 +128,8 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   width: 100%;
   padding: 10px;
-  background-color: black;
-  color: white;
+  background-color: #8CC63E;
+  color: #fac748;
   font-weight: 600;
 `;
 
@@ -137,9 +140,9 @@ export const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
+  
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>YOUR RUCK!</Title>
         <Top>
           <TopButton onClick={() => {navigate('/')}}>CONTINUE SHOPPING</TopButton>
           <TopButton onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</TopButton>
@@ -195,7 +198,7 @@ export const Cart = () => {
                 {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
               </SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</Button>
+            <Button onClick={() => {navigate('/checkout')}}>SEND IT!</Button>
           </Summary>
         </Bottom>
       </Wrapper>

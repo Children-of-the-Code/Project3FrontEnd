@@ -9,13 +9,25 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { apiLogin } from '../../remote/e-commerce-api/authService';
 import { useNavigate } from 'react-router-dom';
 
-const theme = createTheme();
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#8CC63E"
+    },
+    secondary: {
+      main: "#fac748"
+    }
+  }
+});
+interface Logger{
+  logged:()=>void
+}
 
-export default function Login() {
+export default function Login({logged}:Logger) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,10 +35,11 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
     const response = await apiLogin(`${data.get('email')}`, `${data.get('password')}`);
     if (response.status >= 200 && response.status < 300) navigate('/')
+    logged()
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -68,9 +81,9 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2}}
             >
-              Sign In
+              Report for Duty!
             </Button>
             <Grid container>
               <Grid item>
@@ -82,6 +95,7 @@ export default function Login() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+      </ThemeProvider>
+  
   );
 }
