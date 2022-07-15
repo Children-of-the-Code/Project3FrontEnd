@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { CartContext } from './context/cart.context';
 import ProductItem from './models/Product';
@@ -11,8 +10,6 @@ import { DisplayProducts } from "./components/display-products/DisplayProducts";
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Narbar'
-import { LegendToggleRounded } from '@mui/icons-material';
-
 
 
 function App() {
@@ -56,10 +53,7 @@ useEffect(()=>{
   
   fetchData()
   
-  console.log(login)
-},[login.id]
-  
-  )
+})
 
   return (
     <HashRouter>
