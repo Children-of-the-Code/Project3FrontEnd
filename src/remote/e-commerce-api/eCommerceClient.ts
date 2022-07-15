@@ -4,7 +4,7 @@ import axios from 'axios';
 // Very simple, but it also doesn't give us much abstraction
 const eCommerceClient = axios.create({
   withCredentials: true,
-  baseURL: 'http://backonthefarm.azurewebsites.net',
+  baseURL: 'https://backonthefarm.azurewebsites.net',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': 'https://62d18da0c1d65d36c385ca6e--boisterous-squirrel-08cbc5.netlify.app/'
