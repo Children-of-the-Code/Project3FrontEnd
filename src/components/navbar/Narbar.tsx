@@ -37,10 +37,11 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
+  font-weight: bold;
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  color: #8CC63E;
+  color: #DD6031;
 `;
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
@@ -61,7 +62,10 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>
           }
           {login&&
-            <MenuItem onClick={event=>handleClick()}>Logout</MenuItem>
+          <>
+            <MenuItem onClick={() => {navigate('/products')}}>SHOP</MenuItem>
+            <MenuItem onClick={event=>handleClick()}>LOGOUT</MenuItem>
+            </>
           }
           <MenuItem onClick={() => {navigate('/cart')}}>
             <Badge color="primary">

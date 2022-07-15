@@ -10,6 +10,7 @@ import { DisplayProducts } from "./components/display-products/DisplayProducts";
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Narbar'
+import Landing from './components/landing/Landing';
 
 
 function App() {
@@ -62,9 +63,10 @@ useEffect(()=>{
       <Navbar key={login.id} login={login.logged} id={login.id} role={login.role} handleClick={handleClick}></Navbar>
       <CartContext.Provider value={value}>
         <Routes>
-          {login.logged&&
-          <Route path="/" element={<DisplayProducts />} />
-          }
+        <Route path="/" element={<Landing />} />
+        {login.logged&&
+          <Route path="/products" element={<DisplayProducts />} />
+        }
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
             <Route path="/register" element={<Register />} />
