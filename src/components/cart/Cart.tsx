@@ -93,7 +93,7 @@ const ProductAmount = styled.div`
 
 const ProductPrice = styled.div`
   font-size: 30px;
-  font-weight: 200;
+  font-weight: 400;
 `;
 
 const Hr = styled.hr`
@@ -144,8 +144,7 @@ export const Cart = () => {
       <Wrapper>
         <Title>YOUR RUCK!</Title>
         <Top>
-          <TopButton onClick={() => {navigate('/')}}>CONTINUE SHOPPING</TopButton>
-          <TopButton onClick={() => {navigate('/checkout')}}>CHECKOUT NOW</TopButton>
+          <TopButton onClick={() => {navigate('/products')}}>CONTINUE SHOPPING</TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -160,15 +159,18 @@ export const Cart = () => {
                           <b>Product:</b> {product.name}
                         </ProductName>
                         <ProductId>
-                          <b>ID:</b> {product.id}
+                          <b>Description:</b> {product.description}
                         </ProductId>
                       </Details>
                     </ProductDetail>
                     <PriceDetail>
                       <ProductAmountContainer>
-                        <ProductAmount> {product.quantity} </ProductAmount>
+                        <ProductAmount> 
+                          <b>You are ordering: </b>
+                          {product.quantity} 
+                        </ProductAmount>
                       </ProductAmountContainer>
-                      <ProductPrice>$ {product.price}</ProductPrice>
+                      <ProductPrice>$ {product.price}.00 .ea</ProductPrice>
                     </PriceDetail>
                   </Product>
                   <Hr/>
@@ -181,7 +183,7 @@ export const Cart = () => {
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>$ 
-                  {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+                  {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}.00
               </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
@@ -195,10 +197,10 @@ export const Cart = () => {
             <SummaryItem>
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 
-                {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
+                {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}.00
               </SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => {navigate('/checkout')}}>SEND IT!</Button>
+            <Button onClick={() => {navigate('/checkout')}}>CHECKOUT NOW!</Button>
           </Summary>
         </Bottom>
       </Wrapper>

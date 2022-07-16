@@ -52,6 +52,7 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Signin Screen Shot][signin-screenshot]](https://example.com)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -143,4 +144,5 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: repoAssets/home.png
+[product-screenshot]: repoAssets/landing.png
+[signin-screenshot]: repoAssets/signin.png
