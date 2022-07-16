@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { CartContext } from './context/cart.context';
 import ProductItem from './models/Product';
@@ -48,14 +48,7 @@ function App() {
   }
 
  
-useEffect(()=>{
-  
-  
-  fetchData()
-  
-  console.log(login)
-},[login.id]
-  )
+
 
   return (
     <HashRouter>
