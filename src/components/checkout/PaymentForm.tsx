@@ -1,9 +1,6 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
 import PaymentDetail from '../../models/PaymentDetail';
-import { Box, Button } from '@mui/material';
+
 
 interface paymentFormProps {
   handleBack: () => void
@@ -32,72 +29,70 @@ export default function PaymentForm(props: paymentFormProps) {
   }
 
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Payment method
-      </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="cardName"
-              name="cardName"
-              label="Name on card"
-              fullWidth
-              autoComplete="cc-name"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="cardNumber"
-              name="cardNumber"
-              label="Card number"
-              fullWidth
-              autoComplete="cc-number"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="expDate"
-              name="expDate"
-              label="Expiry date"
-              fullWidth
-              autoComplete="cc-exp"
-              variant="standard"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="cvv"
-              name="cvv"
-              label="CVV"
-              helperText="Last three digits on signature strip"
-              fullWidth
-              autoComplete="cc-csc"
-              variant="standard"
-            />
-          </Grid>
-        </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={props.handleBack} sx={{ mt: 3, ml: 1 }}>
-            Back
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ mt: 3, ml: 1 }}
-          >
-            Next
-          </Button>
-        </Box>
-      </Box>
-      
-    </React.Fragment>
+    <>
+      <div className="mt-10 sm:mt-0">
+     <h1 className="font-semibold text-2xl">Payment Method</h1>
+    <div className="mt-5 md:mt-0 md:col-span-2">
+      <form onSubmit={handleSubmit}>
+        <div className="shadow overflow-hidden sm:rounded-md">
+          <div className="px-4 py-5 bg-white sm:p-6">
+            <div className="grid grid-cols-6 gap-6">
+              {/* Name on card */}
+              <div className="col-span-6 sm:col-span-3">
+                <label  className="block text-sm font-medium text-gray-700">Name on card</label>
+                <input 
+                  type="text" 
+                  required
+                  id="cardName"
+                  name="cardName"
+                  autoComplete="cc-name"
+                  className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              </div>
+              {/* Card Number */}
+              <div className="col-span-6 sm:col-span-3">
+                <label className="block text-sm font-medium text-gray-700">Card number</label>
+                <input 
+                  type="text" 
+                  required
+                  id="cardNumber"
+                  name="cardNumber"
+                  autoComplete="cc-number"
+                  className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"/>
+              </div>
+              {/* City */}
+              <div className="col-span-6 sm:col-span-3">
+                <label  className="block text-sm font-medium text-gray-700">Expiry date</label>
+                <input 
+                  type="text" 
+                  required
+                  id="expDate"
+                  name="expDate"
+                  autoComplete="cc-exp"
+                  className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              </div>
+              {/* State */}
+              <div className="col-span-6 sm:col-span-3">
+                <label  className="block text-sm font-medium text-gray-700">CVV</label>
+                <input 
+                  type="text" 
+                  required
+                  id="cvv"
+                  name="cvv"
+                  autoComplete="cc-csc"
+                  className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              </div>
+            </div>
+          </div>
+          <div className="px-4 py-3 bg-gray-50 text-right sm:px-6 mx-2">
+            <button onClick={props.handleBack}  className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Back</button>
+            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              Next
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+    </>
   );
 }
