@@ -49,7 +49,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About Colonel Kernel
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 [![Signin Screen Shot][signin-screenshot]](https://example.com)
