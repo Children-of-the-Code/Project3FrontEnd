@@ -1,13 +1,7 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
 import Product from '../../models/Product';
 import PaymentDetail from '../../models/PaymentDetail';
 import Address from '../../models/Address';
-import { Box, Button } from '@mui/material';
 import { apiPurchase } from '../../remote/e-commerce-api/productService';
 import { CartContext } from '../../context/cart.context';
 
@@ -36,62 +30,46 @@ export default function Review(props: reviewProps) {
   }
 
   return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Order summary
-      </Typography>
-      <List disablePadding>
+    <>
+     <div className="mt-10 sm:mt-0">
+        <h1 className="font-semibold text-2xl mb-2">Order summary</h1>
         {cart.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={`${product.name} x${product.quantity}`} secondary={product.description} />
-            <Typography variant="body2">{product.price * product.quantity}</Typography>
-          </ListItem>
+          <>
+            <div key={product.name}>
+              <div className="flex flex-col justify-between ml-4 flex-grow mb-2">
+                <span className="font-bold text-sm">{`${product.name} x${product.quantity}`}</span>
+                <span className="text-xs">{product.description}</span>
+                <span className="text-sm">${product.price * product.quantity}</span>
+              </div>
+            </div>
+          </>
         ))}
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $ {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}
-          </Typography>
-        </ListItem>
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>{`${props.address.firstName} ${props.address.lastName}`}</Typography>
-          <Typography gutterBottom>{`${props.address.address1}${props.address.address2? ', ' + props.address.address2: ''}, ${props.address.city}, ${props.address.state} , ${props.address.zip}, ${props.address.country}`}</Typography>
-        </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
-          <Grid container>
+        <h1 className="font-semibold text-lg mb-2">Total: <span > $ {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}</span></h1>
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <h1 className="font-semibold text-2xl mb-2">Shipping details</h1>
+            <p className="font-bold text-md">{`${props.address.firstName} ${props.address.lastName}`}</p>
+            <p className="font-bold text-sm">{`${props.address.address1} ${props.address.address2}`}</p>
+            <p className="font-bold text-sm">{`${props.address.city}, ${props.address.state} , ${props.address.zip}`}</p>
+            <p className="font-bold text-sm">{props.address.country}</p>
+          </div>
+          <div>
+            <h1 className="font-semibold text-2xl mb-2">Payment details</h1>
             {props.payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button onClick={props.handleBack} sx={{ mt: 3, ml: 1 }}>
-          Back
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          sx={{ mt: 3, ml: 1 }}
-        >
-          Place order
-        </Button>
-      </Box>
-    </React.Fragment>
+              <div key={payment.name}>
+                <p className="font-bold text-md">{payment.name}</p>
+                <p className="font-bold text-sm">{payment.detail}</p>
+              </div>
+              ))}
+          </div>
+        </div>
+        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6 mx-2">
+            <button onClick={props.handleBack} className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Back</button>
+            <button  onClick={handleSubmit} type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              Place Order
+            </button>
+          </div>
+     </div>
+    </>
   );
 }
