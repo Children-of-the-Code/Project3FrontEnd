@@ -19,7 +19,7 @@ import { CartContext } from '../../context/cart.context';
 import Product from '../../models/Product';
 import { useNavigate } from 'react-router-dom';
 import { StayPrimaryLandscape } from '@material-ui/icons';
-import Colonel from '../../assets/colonel.png';
+
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
