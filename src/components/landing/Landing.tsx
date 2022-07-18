@@ -15,8 +15,7 @@ export default function Landing() {
                 <span className="block text-yellow-400 xl:inline">To enhance your life</span>
               </h1>
               <p className="mt-3 text-base text-orange-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                fugiat veniam occaecat fugiat aliqua.
+              Colonel Kernel's Farmer's Market is an online produce delivery company that simplifies the process of ordering and receiving organic produce in your home!
               </p>
             </div>
           </main>
