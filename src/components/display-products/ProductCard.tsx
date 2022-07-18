@@ -1,106 +1,43 @@
-import {
-    SearchOutlined,
-    ShoppingCartOutlined,
-  } from "@material-ui/icons";
+import {ShoppingCartOutlined} from "@material-ui/icons";
 import { useContext } from "react";
-  import styled from "styled-components";
 import { CartContext } from "../../context/cart.context";
 import Product from "../../models/Product";
-  
-  const Info = styled.div`
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease;
-    cursor: pointer;
-  `;
-  
-  const Container = styled.div`
-    flex: 1;
-    margin: 5px;
-    min-width: 280px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f5fbfd;
-    position: relative;
-    &:hover ${Info}{
-      opacity: 1;
-    }
-  `;
-  
-  const Circle = styled.div`
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    position: absolute;
-  `;
-  
-  const Image = styled.img`
-    height: 75%;
-    z-index: 2;
-  `;
-  
-  const Icon = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    transition: all 0.5s ease;
-    &:hover {
-      background-color: #e9f5f5;
-      transform: scale(1.1);
-    }
-  `;
-  
-  interface productProps {
-      product: Product,
-      key: number
+
+interface productProps {
+    product: Product,
+    key: number
+}
+
+export const ProductCard = (props: productProps) => {
+  const { cart, setCart } = useContext(CartContext);
+
+  const addItemToCart = (product: Product) => {
+
+    const newCart = [...cart]
+    const index = newCart.findIndex((searchProduct) => {
+      return searchProduct.id === product.id
+    })
+
+    if (index === -1) newCart.push(product)
+    else newCart[index].quantity += product.quantity
+
+    setCart(newCart)
   }
 
-  export const ProductCard = (props: productProps) => {
-    const { cart, setCart } = useContext(CartContext);
-
-    const addItemToCart = (product: Product) => {
-
-      const newCart = [...cart]
-      const index = newCart.findIndex((searchProduct) => {
-        return searchProduct.id === product.id
-      })
-
-      if (index === -1) newCart.push(product)
-      else newCart[index].quantity += product.quantity
-
-      setCart(newCart)
-    }
-
-    return (
-      <Container>
-        <Circle />
-        <Image src={props.product.image} />
-        <Info>
-          <Icon>
-            <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: 1})}} />
-          </Icon>
-          <Icon>
-            <SearchOutlined />
-          </Icon>
-        </Info>
-      </Container>
-      
-    );
-  };
+  return (
+    <div key={props.product.id} className="group">
+    <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+      <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
+    </div>
+    <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
+    <p className="mt-1 text-lg font-medium text-gray-900">${props.product.price}</p>
+    <button onClick={() => {addItemToCart({...props.product, quantity: 1})}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+        <ShoppingCartOutlined  /> 
+      </span>
+      Add to Cart
+    </button>
+  </div>
+  );
+};
