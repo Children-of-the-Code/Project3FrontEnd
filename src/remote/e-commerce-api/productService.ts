@@ -17,7 +17,7 @@ export const apiGetProductById = async (id: number): Promise<eCommerceApiRespons
     return { status: response.status, payload: response.data };
 }
 
-export const apiUpsertProduct = async (product: Product): Promise<eCommerceApiResponse> => {
+export const apiUpsertProduct = async (product: any): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.put<any>(
         `${baseURL}`,
         product
