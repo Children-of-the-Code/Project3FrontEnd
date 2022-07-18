@@ -30,9 +30,14 @@ export const ProductCard = (props: productProps) => {
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
-    <h3 className="mt-4 text-md text-gray-700">{props.product.description}</h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
     <p className="mt-1 text-lg font-medium text-gray-900">${props.product.price}</p>
-    Add to Cart <ShoppingCartOutlined onClick={() => {addItemToCart({...props.product, quantity: 1})}} /> 
+    <button onClick={() => {addItemToCart({...props.product, quantity: 1})}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+        <ShoppingCartOutlined  /> 
+      </span>
+      Add to Cart
+    </button>
   </div>
   );
 };
