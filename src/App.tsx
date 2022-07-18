@@ -11,6 +11,8 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Narbar'
 import Landing from './components/landing/Landing';
+import EditSaleProduct from './components/sales/EditSaleProduct';
+
 
 
 function App() {
@@ -64,6 +66,9 @@ useEffect(()=>{
       <CartContext.Provider value={value}>
         <Routes>
         <Route path="/" element={<Landing />} />
+        {login.role==="Admin"&&<>
+        <Route path="/adminsales" element={<EditSaleProduct></EditSaleProduct>}></Route>
+        </>}
         {login.logged&&
           <Route path="/products" element={<DisplayProducts />} />
         }

@@ -56,6 +56,10 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
         <Logo onClick={() => {navigate('/')}}>   Colonel Kernel</Logo>
         </Left>
         <Right>
+          {role==="Admin"&&<>
+          <MenuItem onClick={() => {navigate('/adminsales')}}>EDIT SALES</MenuItem>
+          </>
+          }
           {login===false&&<>
           <MenuItem onClick={() => {navigate('/register')}}>REGISTER</MenuItem>
           <MenuItem onClick={() => {navigate('/login')}}>SIGN IN</MenuItem>
