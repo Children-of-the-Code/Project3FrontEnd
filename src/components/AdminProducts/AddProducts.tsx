@@ -42,7 +42,7 @@ export class AddProduct extends React.Component <any,any>{
                 <div>
                 <div>
                     <form onSubmit = {event => this.submit(event)}>
-                        <h3 className='AddProductHeader'>Add New Product: </h3>
+                        <h3 className='AddProductHeader'>Add New Product </h3>
                         <ul>
                             <li><span className="AddProductText">Name of Product: </span><br></br>
                             <input type="text" value={this.state.name} onChange={event => this.updateInputValue("name", event)}required></input><br></br>
@@ -57,18 +57,11 @@ export class AddProduct extends React.Component <any,any>{
                             <input type="number"  value={this.state.quantity} onChange={event => this.updateInputValue("quantity", event)}required></input><br></br>
                             </li>
                             <li><span className="AddProductText">Image of Product: </span><br></br>
-                            <input type="text" value={this.state.url} onChange={event => this.updateInputValue("url", event)}></input><br></br>
+                            <input type="text" value={this.state.url} onChange={event => this.updateInputValue("url", event)}required></input><br></br>
                             </li>
                             <li><button type="submit">Add Product</button></li>
                         </ul>
                     </form>
-                </div>
-                <div>
-                    <h2>Update Products</h2>
-                    {this.state.products&&<>
-                {this.state.products.map((item:any) => {
-                    <div>A<UpdateProduct product={item} key={item.id}/></div>
-                })}</>}
                 </div>
                 </div>
             )

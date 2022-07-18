@@ -40,7 +40,7 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>  
           }
           {role==="Admin"&&<> 
-          <MenuItem onClick={() => {navigate('/AddProducts')}}>ADD ITEM</MenuItem>
+          <Badge onClick={() => {navigate('/AddProducts')}} className="text-md no-underline text-orange-600 ml-2 px-1">ADD ITEM</Badge>
           </>}
           {login&&
           <>
