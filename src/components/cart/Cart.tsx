@@ -2,11 +2,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 
-
-
-
-
-
 export const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
 
@@ -38,11 +33,13 @@ export const Cart = () => {
             <div className="flex flex-col justify-between ml-4 flex-grow">
               <span className="font-bold text-sm">{product.name}</span>
               <span className="text-red-500 text-xs">{product.description}</span>
-              <a href="#" className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+              <p className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</p>
             </div>
           </div>
           <div className="flex justify-center w-1/5">
+            <p onClick={() => {product.quantity -= 1}}>-</p>
             <input className="mx-2 border text-center w-8" type="text" value={product.quantity} />
+            <p>+</p>
           </div>
           <span className="text-center w-1/5 font-semibold text-sm">${product.price}</span>
           <span className="text-center w-1/5 font-semibold text-sm">${product.price * product.quantity}</span>
