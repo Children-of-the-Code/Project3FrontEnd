@@ -11,6 +11,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar';
 import Landing from './components/landing/Landing';
+import { AddProduct } from './components/AdminProducts/AddProducts';
 import ProductDetail  from './components/display-products/ProductDetail';
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail/>} />
         </>
         }
+        {login.role==="Admin"&&<> 
+          <Route path="/AddProducts" element={<AddProduct/>} />
+          </>}
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
             <Route path="/register" element={<Register />} />
