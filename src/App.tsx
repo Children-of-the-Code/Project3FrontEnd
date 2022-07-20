@@ -11,7 +11,8 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
-
+import { DisplayFeaturedProducts } from './components/display-featured/DisplayFeatured';
+import { DisplaySales } from './components/display-sales/DisplaySales';
 
 function App() {
   const [cart, setCart] = useState<ProductItem[]>([]);
@@ -64,8 +65,10 @@ useEffect(()=>{
       <CartContext.Provider value={value}>
         <Routes>
         <Route path="/" element={<Landing />} />
-        {login.logged&&
-          <Route path="/products" element={<DisplayProducts />} />
+        {login.logged&& 
+          <><Route path="/products" element={<DisplayProducts />} />
+          <Route path="/featured" element={<DisplayFeaturedProducts />} /> 
+          <Route path="/sales" element={<DisplaySales />} /></>
         }
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />

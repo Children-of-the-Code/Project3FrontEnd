@@ -16,6 +16,19 @@ export const apiGetProductById = async (id: number): Promise<eCommerceApiRespons
     );
     return { status: response.status, payload: response.data };
 }
+export const apiGetFeaturedProducts = async (): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/featured`
+    );
+    return { status: response.status, payload: response.data };
+}
+
+export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/sale`
+    );
+    return { status: response.status, payload: response.data };
+}
 
 export const apiUpsertProduct = async (product: Product): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.put<any>(
