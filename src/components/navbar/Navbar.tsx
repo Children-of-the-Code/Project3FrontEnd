@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Badge, MenuItem } from "@material-ui/core";
 import { ShoppingCartOutlined, StorefrontOutlined} from "@material-ui/icons";
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
@@ -40,7 +41,12 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>  
           }
           {role==="Admin"&&<> 
-          <Badge onClick={() => {navigate('/AddProducts')}} className="text-md no-underline text-orange-600 ml-2 px-1">ADD ITEM</Badge>
+          <a onClick={() => {navigate('/AddProducts')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+              <Badge>
+                ADD PRODUCT <AddBoxOutlinedIcon />
+              </Badge>
+          </a>
+          
           </>}
           {login&&
           <>
