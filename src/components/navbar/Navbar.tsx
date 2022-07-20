@@ -40,11 +40,7 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>  
           }
           {login&&role==="Admin"&&
-          <><a onClick={() => { navigate('/Admin'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
-              <Badge>
-                ADD NEW PRODUCT <AppRegistrationOutlinedIcon />
-              </Badge>
-            </a>
+          <>
             <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
                 <Badge>
                   FEATURED PRODUCT <AppRegistrationOutlinedIcon/>

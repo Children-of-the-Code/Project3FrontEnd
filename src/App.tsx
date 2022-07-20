@@ -7,7 +7,6 @@ import { Route, Routes, HashRouter } from "react-router-dom";
 import { Cart } from './components/cart/Cart';
 import Checkout from './components/checkout/Checkout';
 import { DisplayProducts } from "./components/display-products/DisplayProducts";
-import { AddProduct } from './components/Admin/AddProduct';
 import { DisplayFeaturedProduct } from './components/Admin-featured-Products/DisplayFeaturedProducts';
 import { DisplayAllProducts } from './components/Admin-All-Products/Display-All-Products';
 import {DisplayProductsOnSale} from './components/Admin-ProductOnSale/DisplayProductsOnSale';
@@ -15,7 +14,6 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
-import { UpdateProduct } from './components/Admin-Update-Products/UpdateProduct';
 
 
 function App() {
@@ -78,7 +76,6 @@ useEffect(()=>{
             </>
           }
           {login.logged===true&&login.role==="Admin"&&<>
-          <Route path="/Admin" element={<AddProduct />} />
           <Route path="/Admin-All-Products" element={<DisplayAllProducts />} />
           <Route path="/Admin-ProductOnSale" element={<DisplayProductsOnSale />} />
           <Route path="/Admin-featured-Products" element={<DisplayFeaturedProduct />} /></>

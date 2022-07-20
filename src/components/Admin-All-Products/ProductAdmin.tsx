@@ -26,8 +26,24 @@ export const ProductAdmin = (props: productProps) => {
 
     setCart(newCart)
   }
-  const navigate = useNavigate();
-  //navigate('/Admin-All-Products')
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    let newsale = data.get('sale');
+    //const response = await apiUpdateSale(props.product.id, 10)
+    fetch("http://localhost:5000/api/product/sale", {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': 'http://localhost:3000/'
+                },
+                body: JSON.stringify({
+                   "id" : props.product.id,
+                  "sale": 50
+                })
+            })
+  }
 
   return (
     <div key={props.product.id} className="group">
@@ -57,11 +73,8 @@ export const ProductAdmin = (props: productProps) => {
       </span>
       Remove from featured
     </button>}
-    <button onClick={() => updateSale(props.product.id)} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-      <span className="absolute left-0 inset-y-0 flex items-center pl-3"> 
-      </span>
-      Update Sale
-      <div>
+    <form onSubmit={handleSubmit}>
+    <div>
               <label htmlFor="sale" className="sr-only">
                 Sale
               </label>
@@ -69,13 +82,19 @@ export const ProductAdmin = (props: productProps) => {
                 id="sale"
                 name="sale"
                 type="number"
-                autoComplete="sale"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Sale"
               />
             </div>
+            <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <span className="absolute left-0 inset-y-0 flex items-center pl-3"> 
+      </span>
+      Update Sale
+      
     </button>
+    </form>
+    
   </div>
   );
 };
@@ -95,10 +114,5 @@ async function removeFromFeatured(id: number){
 }
 
 async function updateSale(id: number){
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-
-    const response = await apiUpdateSale(id, data.get('sale'))
-}}
-
+  const response = await apiUpdateSale(id, 10)
+}

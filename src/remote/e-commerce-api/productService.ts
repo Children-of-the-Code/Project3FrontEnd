@@ -52,7 +52,7 @@ export const apiPurchase = async (products: {id: number, quantity: number}[]): P
     );
     return { status: response.status, payload: response.data };
 }
-export const apiUpdateSale = async (id: any, sale: any): Promise<eCommerceApiResponse> => {
+export const apiUpdateSale = async (id: any, sale: number): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.post<any>(
         `${baseURL}/${'sale'}`,
     );

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../../models/Product';
 import { apiGetAllProducts } from '../../remote/e-commerce-api/productService';
-import { UpdateProduct } from '../Admin-Update-Products/UpdateProduct';
 import { ProductAdmin } from './ProductAdmin';
 
 
