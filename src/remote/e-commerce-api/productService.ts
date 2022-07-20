@@ -1,3 +1,4 @@
+import { AnyCnameRecord } from "dns";
 import Product from "../../models/Product";
 import eCommerceClient, { eCommerceApiResponse } from "./eCommerceClient";
 
@@ -9,6 +10,18 @@ export const apiGetAllProducts = async (): Promise<eCommerceApiResponse> => {
     );
     return { status: response.status, payload: response.data };
 }
+export const apiGetFeaturedProducts = async (): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/${'featured'}`
+    );
+    return { status: response.status, payload: response.data };
+}
+export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/${'sale'}`
+    );
+    return { status: response.status, payload: response.data };
+}
 
 export const apiGetProductById = async (id: number): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.get<any>(
@@ -17,10 +30,17 @@ export const apiGetProductById = async (id: number): Promise<eCommerceApiRespons
     return { status: response.status, payload: response.data };
 }
 
-export const apiUpsertProduct = async (product: Product): Promise<eCommerceApiResponse> => {
-    const response = await eCommerceClient.put<any>(
+export const apiUpsertProduct = async (product: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.post<any>(
         `${baseURL}`,
-        product
+        Product
+    );
+    return { status: response.status, payload: response.data };
+}
+export const apiUpdateProduct = async (id: any, product: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.put<any>(
+        `${baseURL}/${id}`,
+        Product
     );
     return { status: response.status, payload: response.data };
 }
@@ -32,6 +52,12 @@ export const apiPurchase = async (products: {id: number, quantity: number}[]): P
     );
     return { status: response.status, payload: response.data };
 }
+export const apiUpdateSale = async (id: any, sale: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.post<any>(
+        `${baseURL}/${'sale'}`,
+    );
+    return { status: response.status, payload: response.data };
+}
 
 export const apiDeleteProduct = async (id: number): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.delete<any>(
@@ -39,3 +65,16 @@ export const apiDeleteProduct = async (id: number): Promise<eCommerceApiResponse
     );
     return { status: response.status, payload: response.data };
 }
+export const apiDeleteFeaturedProduct = async (id: number): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.delete<any>(
+        `${baseURL}/${'featured'}/${id}`
+    );
+    return { status: response.status, payload: response.data };
+}
+export const apiAddFeaturedProduct = async (id: number): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.put<any>(
+        `${baseURL}/${'featured'}/${id}`
+    );
+    return { status: response.status, payload: response.data };
+}
+
