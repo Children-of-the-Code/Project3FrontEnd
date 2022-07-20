@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { CartContext } from './context/cart.context';
 import ProductItem from './models/Product';
@@ -12,7 +12,7 @@ import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
 import { AddProduct } from './components/AdminProducts/AddProducts';
-
+import ProductDetail  from './components/display-products/ProductDetail';
 
 function App() {
   const [cart, setCart] = useState<ProductItem[]>([]);
@@ -50,14 +50,7 @@ function App() {
   }
 
  
-useEffect(()=>{
-  
-  
-  fetchData()
-  
-  console.log(login)
-},[login.id]
-  )
+
 
   return (
     <HashRouter>
@@ -66,7 +59,10 @@ useEffect(()=>{
         <Routes>
         <Route path="/" element={<Landing />} />
         {login.logged&&
+        <>
           <Route path="/products" element={<DisplayProducts />} />
+          <Route path="/products/:id" element={<ProductDetail/>} />
+        </>
         }
         {login.role==="Admin"&&<> 
           <Route path="/AddProducts" element={<AddProduct/>} />
