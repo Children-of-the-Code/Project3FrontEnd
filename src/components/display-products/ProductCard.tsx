@@ -4,6 +4,7 @@ import Product from "../../models/Product";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 import Login from "../login/Login";
+import { Link } from "react-router-dom";
 
 interface productProps {
     product: Product,
@@ -44,8 +45,10 @@ export const ProductCard = (props: productProps) => {
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
+    
     <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
     <p className="mt-1 text-lg font-medium text-gray-900">${props.product.price}</p>
+    <Link to={`/products/${props.product.id}`} >See more...</Link>
     {/* User UI */}
     <div className="px-4 py-3 text-center sm:px-6 mx-2">
     <button onClick={() => {addItemToCart({...props.product, quantity: 1})}} type="submit" className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">

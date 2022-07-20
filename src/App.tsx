@@ -11,7 +11,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
-
+import ProductDetail  from './components/display-products/ProductDetail';
 
 function App() {
   const [cart, setCart] = useState<ProductItem[]>([]);
@@ -50,13 +50,9 @@ function App() {
 
  
 useEffect(()=>{
-  
-  
   fetchData()
-  
   console.log(login)
-},[login.id]
-  )
+},[login.id])
 
   return (
     <HashRouter>
@@ -65,7 +61,10 @@ useEffect(()=>{
         <Routes>
         <Route path="/" element={<Landing />} />
         {login.logged&&
+        <>
           <Route path="/products" element={<DisplayProducts />} />
+          <Route path="/products/:id" element={<ProductDetail/>} />
+        </>
         }
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
