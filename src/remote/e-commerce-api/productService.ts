@@ -17,7 +17,7 @@ export const apiGetProductById = async (id: any): Promise<eCommerceApiResponse> 
     return { status: response.status, payload: response.data };
 }
 
-export const apiUpsertProduct = async (product: Product): Promise<eCommerceApiResponse> => {
+export const apiUpsertProduct = async (product: any): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.put<any>(
         `${baseURL}`,
         product
@@ -36,6 +36,15 @@ export const apiPurchase = async (products: {id: number, quantity: number}[]): P
 export const apiDeleteProduct = async (id: number): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.delete<any>(
         `${baseURL}/${id}`
+    );
+    return { status: response.status, payload: response.data };
+}
+
+
+export const apiUpdateProduct = async (product: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.post<any>(
+        `${baseURL}`,
+        product
     );
     return { status: response.status, payload: response.data };
 }
