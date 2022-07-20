@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useInsertionEffect} from 'react'
 import axios from 'axios'
 import { apiGetAllProducts } from '../../remote/e-commerce-api/productService'
 import Product from '../../models/Product'
@@ -6,6 +6,7 @@ import { render } from '@testing-library/react'
 import { Container } from '@mui/material'
 import { ProductCard } from '../display-products/ProductCard'
 import { ConstructionRounded, PriceChange } from '@mui/icons-material'
+import { SalesCard } from './SalesCard'
 
 
 
@@ -13,17 +14,14 @@ export default function EditSaleProduct() {
     const [products, setProducts] = useState<Product[]>([])
 
 
-
   useEffect(() => {
     const fetchData = async () => {
-      const result = await apiGetAllProducts()
+      const result = await apiGetAllProducts()  
       setProducts(result.payload)
     }
     fetchData()
   }, [])
 
-  
-    
   return (
     <div>
        
@@ -35,18 +33,17 @@ export default function EditSaleProduct() {
        <>
         <Container>   
         {products.map((item) => (
-            <><ProductCard product={item} key={item.id} /><div>
-              <h3 className='AddProductHeader'>Product Name: {item.name} </h3>
-              <h3 className='AddProductHeader'>Description: {item.description} </h3>
-              <h3 className='AddProductHeader'>Product Original Price: ${item.price} </h3>
-              <h3 className='AddProductHeader'>Product Sale Price: ${Math.round(item.price)-(item.price*0.20)} </h3>
-              <ul>
-                <li><button type="submit">Add Sale To Cart</button></li>
-              </ul>
+            <><SalesCard product={item} key={item.id} /><div>
+              <h3 className='AddProductHeader'>Product Sale Price: ${(item.price)-(item.price*0.20)} </h3>
+                          
           </div></>
-            
+//(item.price)/(100-0.20/100)
+//(current price with sale)/(100-sale amount/100)
+//<h3 className='AddProductHeader'>Product Sale Price: ${(item.price)-(item.price*0.20)} </h3>   
+//      
         ))}
         </Container>
+
     </>
     </div>
     
@@ -54,7 +51,12 @@ export default function EditSaleProduct() {
  
 }
 
+
 function updateInputValue(arg0: string, event: React.ChangeEvent<HTMLInputElement>): void {
+  throw new Error('Function not implemented.')
+}
+
+function componentDidMount() {
   throw new Error('Function not implemented.')
 }
 /*

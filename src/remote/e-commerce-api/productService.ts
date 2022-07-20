@@ -39,3 +39,10 @@ export const apiDeleteProduct = async (id: number): Promise<eCommerceApiResponse
     );
     return { status: response.status, payload: response.data };
 }
+
+export const apiUpdateSale = async (id: number, sale: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.post<any>(
+        `${baseURL}/${sale}`
+    );
+    return { status: response.status, payload: response.data };
+}

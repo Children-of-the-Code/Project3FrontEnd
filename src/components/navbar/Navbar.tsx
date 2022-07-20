@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Badge } from "@material-ui/core";
+import { Badge, Menu } from "@material-ui/core";
 import { ShoppingCartOutlined, StorefrontOutlined} from "@material-ui/icons";
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
+import { MenuItem } from "@mui/material";
 
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
@@ -25,6 +26,12 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </div>
         </div>
         <div className="sm:mb-0 self-center">
+        {role==="Admin"&&<>
+          <a onClick={() => {navigate('/adminsales')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            EDIT SALES
+            </a>
+          </>
+          }
         {login===false&&
           <>
             <a onClick={() => {navigate('/register')}} className="text-md no-underline text-orange-600 ml-2 px-1">

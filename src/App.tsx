@@ -67,7 +67,7 @@ useEffect(()=>{
         <Routes>
         <Route path="/" element={<Landing />} />
         {login.role==="Admin"&&<>
-        <Route path="/adminsales" element={<EditSaleProduct></EditSaleProduct>}></Route>
+        <Route path="/adminsales" element={<EditSaleProduct />}></Route>
         </>}
         {login.logged&&
           <Route path="/products" element={<DisplayProducts />} />
