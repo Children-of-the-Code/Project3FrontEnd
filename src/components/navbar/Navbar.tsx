@@ -17,25 +17,25 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
 
   return (
     <>
-      <nav className="font-sans flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full">
+      <nav className="font-sans  flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full">
         <div className="mb-2 sm:mb-0 flex flex-row">
           <div className="h-10 w-10 self-center mr-2">
           <img className="h-10 w-10 self-center" src={Colonel} />
         </div>
           <div>
-            <a onClick={() => {navigate('/')}}className="text-2xl no-underline text-green-500 font-sans font-bold">Colonel Kernel's</a><br />
+            <a onClick={() => {navigate('/')}}className="text-2xl cursor-pointer no-underline text-green-500 font-sans font-bold">Colonel Kernel's</a><br />
             <span className="text-xs text-yellow-500">Farmer's Market</span>
           </div>
         </div>
         <div className="sm:mb-0 self-center">
         {login===false&&
           <>
-            <a onClick={() => {navigate('/register')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/register')}} className="text-md cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 REGISTER <AppRegistrationOutlinedIcon/>
               </Badge>
             </a>
-            <a onClick={() => {navigate('/login')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/login')}} className="text-md cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 SIGN IN <LoginIcon/>
               </Badge>
@@ -43,55 +43,55 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </>  
           }
           {role==="Admin"&&<> 
-          <a onClick={() => {navigate('/AddProducts')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+          <a onClick={() => {navigate('/AddProducts')}} className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
               <Badge>
-                ADD PRODUCT <AddBoxOutlinedIcon />
+                ADD ITEM <AddBoxOutlinedIcon />
               </Badge>
           </a>
-          <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+          <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
                 <Badge>
-                  FEATURED PRODUCT <AppRegistrationOutlinedIcon/>
+                  EDIT FEATURED <AppRegistrationOutlinedIcon/>
                 </Badge>
               </a>
-              <a onClick={() => { navigate('/Admin-ProductONSale'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
-                <Badge>
-                  PRODUCT ON SALE <AppRegistrationOutlinedIcon/>
+              <a onClick={() => { navigate('/Admin-ProductONSale'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
+                <Badge> 
+                  EDIT SALES <AppRegistrationOutlinedIcon/>
                 </Badge>
               </a>
-              <a onClick={() => { navigate('/Admin-All-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+              <a onClick={() => { navigate('/Admin-All-Products'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
                 <Badge>
-                  PRODUCT <AppRegistrationOutlinedIcon/>
+                  PRODUCTS <AppRegistrationOutlinedIcon/>
                 </Badge>
               </a>
           
           </>}
           {login&&
           <>
-            <a onClick={() => {navigate('/products')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/products')}} className="text-sm cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
-                GO SHOPPING <StorefrontOutlined />
+                SHOP <StorefrontOutlined />
               </Badge>
             </a>
 
-            <a onClick={() => {navigate('/featured')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/featured')}} className="text-sm cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 FEATURED <CampaignOutlinedIcon />
               </Badge>
             </a>
 
-            <a onClick={() => {navigate('/sales')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/sales')}} className="text-sm cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 SALE <LocalOfferOutlinedIcon />
               </Badge>
             </a>
           
-            <a onClick={() => {navigate('/cart')}}className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a onClick={() => {navigate('/cart')}}className="text-sm cursor-pointer no-underline text-orange-600 ml-2 px-1">
               <Badge>
-                YOUR CART  <ShoppingCartOutlined />
+                CART  <ShoppingCartOutlined />
               </Badge>
             </a>
 
-            <a href="/" onClick={event=> handleClick()} className="text-md no-underline text-orange-600 ml-2 px-1">
+            <a href="/" onClick={event=> handleClick()} className="text-sm no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 SIGN OUT <LogoutIcon />
               </Badge>
