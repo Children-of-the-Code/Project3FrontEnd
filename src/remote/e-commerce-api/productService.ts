@@ -9,6 +9,12 @@ export const apiGetAllProducts = async (): Promise<eCommerceApiResponse> => {
     );
     return { status: response.status, payload: response.data };
 }
+export const apiGetAllProductsOverZero = async (): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/overZero`
+    );
+    return { status: response.status, payload: response.data };
+}
 
 export const apiGetFeaturedProducts = async (): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.get<any>(

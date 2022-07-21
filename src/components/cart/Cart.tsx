@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 import Product from "../../models/Product";
+import { apiGetProductById } from "../../remote/e-commerce-api/productService";
 
 export const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -10,7 +11,8 @@ export const Cart = () => {
   const navigate = useNavigate();
 
   // increase quantity
-  const increment = (product: any) => {
+  const increment =async (product: any) => {
+    const response=await apiGetProductById(product.id);
     const newCart = [...cart]
     const index = newCart.findIndex((searchProduct) => {
       return searchProduct.id === product.id
@@ -18,7 +20,7 @@ export const Cart = () => {
 
     if (index === -1) {
       newCart.push(product)
-    }else {
+    }else if(newCart[index].quantity<response.payload.quantity) {
       newCart[index].quantity += product.quantity
     }
 
@@ -82,7 +84,7 @@ export const Cart = () => {
           <div className="flex justify-center w-1/5">
             <button onClick={() => {if(product.quantity>1){decrement({...product, quantity: 1})}}}>-</button>
               <input className="mx-2 border text-center w-8" type="text" value={product.quantity} />
-            <button onClick={() => {increment({...product, quantity: 1})}}>+</button>
+            <button onClick={() => {{increment({...product, quantity: 1})}}}>+</button>
           </div>
           <span className="text-center w-1/5 font-semibold text-sm">${product.price.toFixed(2)}</span>
           <span className="text-center w-1/5 font-semibold text-sm">${(product.price * product.quantity).toFixed(2)}</span>
