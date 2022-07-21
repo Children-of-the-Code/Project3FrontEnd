@@ -12,6 +12,9 @@ import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
 import { AddProduct } from './components/AdminProducts/AddProducts';
+import { DisplayFeaturedProduct } from './components/Admin-featured-Products/DisplayFeaturedProducts';
+import { DisplayAllProducts } from './components/Admin-All-Products/Display-All-Products';
+import {DisplayProductsOnSale} from './components/Admin-ProductOnSale/DisplayProductsOnSale';
 import ProductDetail  from './components/display-products/ProductDetail';
 
 function App() {
@@ -67,6 +70,11 @@ function App() {
         {login.role==="Admin"&&<> 
           <Route path="/AddProducts" element={<AddProduct/>} />
           </>}
+          {login.logged===true&&login.role==="Admin"&&<>
+          <Route path="/Admin-All-Products" element={<DisplayAllProducts />} />
+          <Route path="/Admin-ProductOnSale" element={<DisplayProductsOnSale />} />
+          <Route path="/Admin-featured-Products" element={<DisplayFeaturedProduct />} /></>
+          }
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
             <Route path="/register" element={<Register />} />

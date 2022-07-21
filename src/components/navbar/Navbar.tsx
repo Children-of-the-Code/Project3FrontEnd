@@ -46,6 +46,21 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
                 ADD PRODUCT <AddBoxOutlinedIcon />
               </Badge>
           </a>
+          <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  FEATURED PRODUCT <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
+              <a onClick={() => { navigate('/Admin-ProductONSale'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  PRODUCT ON SALE <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
+              <a onClick={() => { navigate('/Admin-All-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  PRODUCT <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
           
           </>}
           {login&&
