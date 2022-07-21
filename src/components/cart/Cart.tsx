@@ -1,11 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
 
 export const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
+  const [ cartItem, setCartItem ] = useState([]);
 
   const navigate = useNavigate();
+
+  // increase quantity
+  const increment = (product: any) => {
+    const newCart = [...cart]
+    const index = newCart.findIndex((searchProduct) => {
+      return searchProduct.id === product.id
+    })
+
+    if (index === -1) {
+      newCart.push(product)
+    }else {
+      newCart[index].quantity += product.quantity
+    }
+
+    setCart(newCart)
+  }
+
+  const decrement = (product: any) => {
+
+    const currCart = [...cart]
+    const index = currCart.findIndex((searchProduct) => {
+      return searchProduct.id === product.id
+    })
+      if (index >= 0){
+        currCart[index].quantity -= product.quantity
+    } else if (index < 1){
+        alert('Please remove from cart')
+    } else {
+      return product
+    }
+
+    setCart(currCart)
+  }
+
+  const removeItem = (id: any) => {
+    setCartItem(currItems => {
+      return currItems.filter(product => product !== id)
+    })
+  }
+  
 
   return (
     <div className="container mx-auto mt-10">
@@ -33,16 +74,16 @@ export const Cart = () => {
             <div className="flex flex-col justify-between ml-4 flex-grow">
               <span className="font-bold text-sm">{product.name}</span>
               <span className="text-red-500 text-xs">{product.description}</span>
-              <p className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</p>
+              <button onClick={() => {removeItem(product)}} className="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</button>
             </div>
           </div>
           <div className="flex justify-center w-1/5">
-            <p onClick={() => {product.quantity -= 1}}>-</p>
-            <input className="mx-2 border text-center w-8" type="text" value={product.quantity} />
-            <p>+</p>
+            <button onClick={() => {decrement({...product, quantity: 1})}}>-</button>
+              <input className="mx-2 border text-center w-8" type="text" value={product.quantity} />
+            <button onClick={() => {increment({...product, quantity: 1})}}>+</button>
           </div>
-          <span className="text-center w-1/5 font-semibold text-sm">${product.price}</span>
-          <span className="text-center w-1/5 font-semibold text-sm">${product.price * product.quantity}</span>
+          <span className="text-center w-1/5 font-semibold text-sm">${product.price.toFixed(2)}</span>
+          <span className="text-center w-1/5 font-semibold text-sm">${(product.price * product.quantity).toFixed(2)}</span>
         </div>
         </>
               ))
@@ -59,8 +100,8 @@ export const Cart = () => {
       <div id="summary" className="w-1/4 px-8 py-10">
         <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
         <div className="flex justify-between mt-10 mb-5">
-          <span className="font-semibold text-sm uppercase">Items {cart.reduce<number>((total, product) => total + product.quantity, 0)}</span>
-          <span className="font-semibold text-sm">${cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}</span>
+          <span className="font-semibold text-sm uppercase">Items {cart.reduce<number>((total, product) => total + product.quantity, 0).toFixed(2)}</span>
+          <span className="font-semibold text-sm">${cart.reduce<number>((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</span>
         </div>
         <div>
           <div className="flex justify-between mt-10 mb-5">
@@ -75,7 +116,7 @@ export const Cart = () => {
         <div className="border-t mt-8">
           <div className="flex font-semibold justify-between py-6 text-sm uppercase">
             <span>Total cost</span>
-            <span>${cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}</span>
+            <span>${cart.reduce<number>((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</span>
           </div>
           <button onClick={() => {navigate('/checkout')}} className="bg-green-500 font-semibold hover:bg-green-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
         </div>

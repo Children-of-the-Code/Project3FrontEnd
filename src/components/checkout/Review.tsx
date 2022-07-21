@@ -39,12 +39,12 @@ export default function Review(props: reviewProps) {
               <div className="flex flex-col justify-between ml-4 flex-grow mb-2">
                 <span className="font-bold text-sm">{`${product.name} x${product.quantity}`}</span>
                 <span className="text-xs">{product.description}</span>
-                <span className="text-sm">${product.price * product.quantity}</span>
+                <span className="text-sm">${(product.price * product.quantity).toFixed(2)}</span>
               </div>
             </div>
           </>
         ))}
-        <h1 className="font-semibold text-lg mb-2">Total: <span > $ {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0)}</span></h1>
+        <h1 className="font-semibold text-lg mb-2">Total: <span > $ {cart.reduce<number>((total, product) => total + product.price * product.quantity, 0).toFixed(2)}</span></h1>
         <div className="grid grid-cols-2 gap-2">
           <div>
             <h1 className="font-semibold text-2xl mb-2">Shipping details</h1>

@@ -9,30 +9,21 @@ export const apiGetAllProducts = async (): Promise<eCommerceApiResponse> => {
     );
     return { status: response.status, payload: response.data };
 }
-export const apiGetFeaturedProducts = async (): Promise<eCommerceApiResponse> => {
-    const response = await eCommerceClient.get<any>(
-        `${baseURL}/${'featured'}`
-    );
-    return { status: response.status, payload: response.data };
-}
-export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
-    const response = await eCommerceClient.get<any>(
-        `${baseURL}/${'sale'}`
-    );
-    return { status: response.status, payload: response.data };
-}
-export const apiGetProductById = async (id: any): Promise<eCommerceApiResponse> => {
-    const response = await eCommerceClient.get<any>(
-        `${baseURL}/${id}`
-    );
-    return { status: response.status, payload: response.data };
-}
+
 export const apiGetFeaturedProducts = async (): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.get<any>(
         `${baseURL}/featured`
     );
     return { status: response.status, payload: response.data };
 }
+
+export const apiGetProductById = async (id: any): Promise<eCommerceApiResponse> => {
+    const response = await eCommerceClient.get<any>(
+        `${baseURL}/${id}`
+    );
+    return { status: response.status, payload: response.data };
+}
+
 
 export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.get<any>(

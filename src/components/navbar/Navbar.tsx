@@ -4,10 +4,11 @@ import { Badge, MenuItem } from "@material-ui/core";
 import { ShoppingCartOutlined, StorefrontOutlined} from "@material-ui/icons";
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
-import { Percent } from "@mui/icons-material";
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
@@ -74,13 +75,13 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
 
             <a onClick={() => {navigate('/featured')}} className="text-md no-underline text-orange-600 ml-2 px-1">
               <Badge>
-                FEATURED <Stars /> 
+                FEATURED <CampaignOutlinedIcon />
               </Badge>
             </a>
 
             <a onClick={() => {navigate('/sales')}} className="text-md no-underline text-orange-600 ml-2 px-1">
               <Badge>
-                SALE <Percent /> 
+                SALE <LocalOfferOutlinedIcon />
               </Badge>
             </a>
           
