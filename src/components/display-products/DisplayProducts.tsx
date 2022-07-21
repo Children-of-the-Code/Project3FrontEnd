@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../../models/Product';
-import { apiGetAllProducts } from '../../remote/e-commerce-api/productService';
+import { apiGetAllProducts, apiGetAllProductsOverZero } from '../../remote/e-commerce-api/productService';
 import { ProductCard } from "./ProductCard";
 
 export const DisplayProducts = () => {
@@ -10,7 +10,7 @@ export const DisplayProducts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await apiGetAllProducts()
+      const result = await apiGetAllProductsOverZero()
       setProducts(result.payload)
     }
     fetchData()
