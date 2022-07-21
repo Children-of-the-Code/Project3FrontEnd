@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cart.context";
+import Product from "../../models/Product";
 
 export const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -41,10 +42,11 @@ export const Cart = () => {
     setCart(currCart)
   }
 
-  const removeItem = (id: any) => {
-    setCartItem(currItems => {
-      return currItems.filter(product => product !== id)
-    })
+  const removeItem = (id: Product) => {
+    const newCart=[...cart]
+    const cartIndex=newCart.indexOf(id)
+    newCart.splice(cartIndex,1)
+    setCart(newCart);
   }
   
 
