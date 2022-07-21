@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Badge } from "@material-ui/core";
-import { ShoppingCartOutlined, Stars, StorefrontOutlined} from "@material-ui/icons";
+import { Badge, MenuItem } from "@material-ui/core";
+import { ShoppingCartOutlined, StorefrontOutlined} from "@material-ui/icons";
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
@@ -40,6 +41,29 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
             </a>
           </>  
           }
+          {role==="Admin"&&<> 
+          <a onClick={() => {navigate('/AddProducts')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+              <Badge>
+                ADD PRODUCT <AddBoxOutlinedIcon />
+              </Badge>
+          </a>
+          <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  FEATURED PRODUCT <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
+              <a onClick={() => { navigate('/Admin-ProductONSale'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  PRODUCT ON SALE <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
+              <a onClick={() => { navigate('/Admin-All-Products'); } } className="text-md no-underline text-orange-600 ml-2 px-1">
+                <Badge>
+                  PRODUCT <AppRegistrationOutlinedIcon/>
+                </Badge>
+              </a>
+          
+          </>}
           {login&&
           <>
             <a onClick={() => {navigate('/products')}} className="text-md no-underline text-orange-600 ml-2 px-1">

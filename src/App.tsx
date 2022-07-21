@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { CartContext } from './context/cart.context';
 import ProductItem from './models/Product';
@@ -13,6 +13,12 @@ import Navbar from './components/navbar/Navbar'
 import Landing from './components/landing/Landing';
 import { DisplayFeaturedProducts } from './components/display-featured/DisplayFeatured';
 import { DisplaySales } from './components/display-sales/DisplaySales';
+import { AddProduct } from './components/AdminProducts/AddProducts';
+import { DisplayFeaturedProduct } from './components/Admin-featured-Products/DisplayFeaturedProducts';
+import { DisplayAllProducts } from './components/Admin-All-Products/Display-All-Products';
+import {DisplayProductsOnSale} from './components/Admin-ProductOnSale/DisplayProductsOnSale';
+import ProductDetail  from './components/display-products/ProductDetail';
+
 
 function App() {
   const [cart, setCart] = useState<ProductItem[]>([]);
@@ -50,14 +56,7 @@ function App() {
   }
 
  
-useEffect(()=>{
-  
-  
-  fetchData()
-  
-  console.log(login)
-},[login.id]
-  )
+
 
   return (
     <HashRouter>
@@ -65,11 +64,22 @@ useEffect(()=>{
       <CartContext.Provider value={value}>
         <Routes>
         <Route path="/" element={<Landing />} />
-        {login.logged&& 
-          <><Route path="/products" element={<DisplayProducts />} />
-          <Route path="/featured" element={<DisplayFeaturedProducts />} /> 
-          <Route path="/sales" element={<DisplaySales />} /></>
+        {login.logged&&
+        <>
+         <Route path="/featured" element={<DisplayFeaturedProducts />} /> 
+          <Route path="/sales" element={<DisplaySales />} />
+          <Route path="/products" element={<DisplayProducts />} />
+          <Route path="/products/:id" element={<ProductDetail/>} />
+        </>
         }
+        {login.role==="Admin"&&<> 
+          <Route path="/AddProducts" element={<AddProduct/>} />
+          </>}
+          {login.logged===true&&login.role==="Admin"&&<>
+          <Route path="/Admin-All-Products" element={<DisplayAllProducts />} />
+          <Route path="/Admin-ProductOnSale" element={<DisplayProductsOnSale />} />
+          <Route path="/Admin-featured-Products" element={<DisplayFeaturedProduct />} /></>
+          }
           {login.logged===false&&<>
             <Route path="/login" element={<Login logged={logged}/>} />
             <Route path="/register" element={<Register />} />
