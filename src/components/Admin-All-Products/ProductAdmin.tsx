@@ -51,12 +51,13 @@ export const ProductAdmin = (props: productProps) => {
     {props.product.sale>0&&<>
     <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">Sale: %{props.product.sale}</h3>
-    <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${props.product.price}</h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${(props.product.price).toFixed(2)}</h3>
     </>
     }
     {props.product.sale===0&&<>
     <p className="mt-1 text-lg font-medium text-gray-900">Price: ${(props.product.price).toFixed(2)}</p>
     </>}
+    
     <button onClick={() => deleteProduct(props.product.id)} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <span className="absolute left-0 inset-y-0 flex items-center pl-3">
       <AppRegistrationOutlinedIcon /> 
