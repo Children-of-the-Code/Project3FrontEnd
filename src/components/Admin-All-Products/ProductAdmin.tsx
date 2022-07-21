@@ -10,8 +10,11 @@ import { apiAddFeaturedProduct, apiDeleteFeaturedProduct, apiDeleteProduct, apiG
 
 interface productProps {
     product: Product,
-    key: number
+    key: number,
+    fetched:()=>void
 }
+
+
 
 export const ProductAdmin = (props: productProps) => {
   const { cart, setCart } = useContext(CartContext);
@@ -27,19 +30,39 @@ export const ProductAdmin = (props: productProps) => {
 
     setCart(newCart)
   }
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(props.product.id)
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    let newsale = data.get('sale');
-    console.log(newsale);
-    apiUpdateSale(props.product.id,sale);
+  useEffect(()=>{
+    props.fetched()
+  },[])
+  const handleSubmit = (id:number) => {
+    apiUpdateSale(id, sale);
+    console.log(sale);
+    props.fetched();
   }
+
   const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
     let sales=e.target.value as unknown as number;
     console.log(sales);
     setSale(sales);
   }
+  const deleteProduct=async(id: number)=> {
+    const response = await apiDeleteProduct(id) 
+    props.fetched();
+
+  }
+  const addToFeatured=async(id: number)=>{
+    const response = await apiAddFeaturedProduct(id)
+    props.fetched();
+
+}
+
+
+const removeFromFeatured=async(id: number)=>{
+    const response = await apiDeleteFeaturedProduct(id) 
+    props.fetched();
+
+}
+
+
 
   return (
     <div key={props.product.id} className="group">
@@ -83,7 +106,7 @@ export const ProductAdmin = (props: productProps) => {
       </span>
       Remove from featured
     </button>}
-    <form onSubmit={handleSubmit}>
+    
     <div>
               <label htmlFor="sale" className="sr-only">
                 Sale
@@ -98,32 +121,17 @@ export const ProductAdmin = (props: productProps) => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button onClick={()=>handleSubmit(props.product.id)} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <span className="absolute left-0 inset-y-0 flex items-center pl-3"> 
       </span>
       Update Sale
       
     </button>
-    </form>
     
   </div>
   );
 };
 
-async function deleteProduct(id: number) {
-    const response = await apiDeleteProduct(id) 
-
-}
-
-async function addToFeatured(id: number){
-    const response = await apiAddFeaturedProduct(id) 
-}
 
 
-async function removeFromFeatured(id: number){
-    const response = await apiDeleteFeaturedProduct(id) 
-}
 
-async function updateSale(id: number){
-  const response = await apiUpdateSale(id, 10)
-}
