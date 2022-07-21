@@ -11,7 +11,7 @@ export const apiGetAllProducts = async (): Promise<eCommerceApiResponse> => {
 }
 export const apiGetAllProductsOverZero = async (): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.get<any>(
-        `${baseURL}/overZero`
+        `${baseURL}/stocked`
     );
     return { status: response.status, payload: response.data };
 }
