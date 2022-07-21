@@ -31,7 +31,7 @@ export default function PaymentForm(props: paymentFormProps) {
   return (
     <>
       <div className="mt-10 sm:mt-0">
-     <h1 className="font-semibold text-2xl">Payment Method</h1>
+     <h1 className="font-semibold text-green-500 text-2xl">Payment Method</h1>
     <div className="mt-5 md:mt-0 md:col-span-2">
       <form onSubmit={handleSubmit}>
         <div className="shadow overflow-hidden sm:rounded-md">
@@ -84,8 +84,8 @@ export default function PaymentForm(props: paymentFormProps) {
             </div>
           </div>
           <div className="text-center sm:px-4 mx-2">
-            <button onClick={props.handleBack}  className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Back</button>
-            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            <button onClick={props.handleBack}  className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Back</button>
+            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
               Next
             </button>
           </div>

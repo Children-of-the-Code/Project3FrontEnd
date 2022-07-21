@@ -44,14 +44,14 @@ export default function ProductDetail() {
           <div className="col-start-2 col-end-4 ...">
             {product.featured===true&&
             <>
-              <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-4">FEATURED PRODUCT!!!</h1>
+              <h1 className="text-2xl font-extrabold tracking-tight text-orange-500 sm:text-2xl mb-4">Featured For You!</h1>
             </>
             }
             <img src={product.image} alt={product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
           </div>
           <div className="col-start-4 col-end-6 ...">
-            <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-4">{product.name}</h1>
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-xl mb-2">{product.description}</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight text-green-500 sm:text-2xl mb-4">{product.name}</h1>
+            <h1 className="text-xl font-bold tracking-tight text-yellow-500 sm:text-xl mb-2">{product.description}</h1>
             {product.sale>0&&<>
     <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((product.price)/((100-product.sale)/100)).toFixed(2)}</s></h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">Sale: %{product.sale}</h3>
@@ -59,9 +59,9 @@ export default function ProductDetail() {
     </>
     }
     {product.sale===0&&<>
-    <p className="mt-1 text-lg font-medium text-gray-900">Price: ${(product.price).toFixed(2)}</p>
+    <p className="mt-1 text-md font-medium text-gray-900">Price: ${(product.price).toFixed(2)}</p>
     </>}
-            <p className="mt-1 text-lg font-medium text-gray-900">Quantity in stock: {product.quantity}</p>
+            <p className="mt-4 mb-4 text-md font-medium text-gray-900">Quantity in stock: {product.quantity}</p>
                 <button onClick={() => {addItemToCart({...product, quantity: 1})}} type="submit" className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
             <AddShoppingCartOutlinedIcon /> Add to cart
           </button>

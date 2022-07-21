@@ -41,18 +41,18 @@ export const ProductCard = (props: productProps) => {
   }
   return (
     <div key={props.product.id} className="group">
-    <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8 mb-4">
+    <div className="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8 mb-4">
     {props.product.featured===true&&
             <>
-              <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-4">FEATURED PRODUCT!!!</h1>
+               <h1 className="text-2xl font-extrabold tracking-tight text-orange-500 sm:text-2xl mb-4">Featured For You!</h1>
             </>
             }
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
-    <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
+    <h3 className="mt-4 text-lg font-medium text-green-500">{props.product.name}</h3>
         {props.product.sale>0&&<>
     <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
-    <h3 className="mt-4 text-md font-medium text-gray-700">Sale: %{props.product.sale}</h3>
+    <h3 className="mt-4 text-md font-medium text-red-500">Sale: %{props.product.sale}</h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${(props.product.price).toFixed(2)}</h3>
     </>
     }

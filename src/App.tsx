@@ -18,6 +18,7 @@ import { DisplayFeaturedProduct } from './components/Admin-featured-Products/Dis
 import { DisplayAllProducts } from './components/Admin-All-Products/Display-All-Products';
 import {DisplayProductsOnSale} from './components/Admin-ProductOnSale/DisplayProductsOnSale';
 import ProductDetail  from './components/display-products/ProductDetail';
+import Footer from './components/footer/Footer';
 
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </CartContext.Provider>
+      <Footer />
     </HashRouter>
   )
 }
