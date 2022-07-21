@@ -44,6 +44,11 @@ export const ProductAdmin = (props: productProps) => {
   return (
     <div key={props.product.id} className="group">
     <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+    {props.product.featured===true&&
+            <>
+              <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-4">FEATURED PRODUCT!!!</h1>
+            </>
+            }
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
@@ -57,7 +62,7 @@ export const ProductAdmin = (props: productProps) => {
     {props.product.sale===0&&<>
     <p className="mt-1 text-lg font-medium text-gray-900">Price: ${(props.product.price).toFixed(2)}</p>
     </>}
-    
+
     <button onClick={() => deleteProduct(props.product.id)} type="submit" className="group mb-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <span className="absolute left-0 inset-y-0 flex items-center pl-3">
       <AppRegistrationOutlinedIcon /> 

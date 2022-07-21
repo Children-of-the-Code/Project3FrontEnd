@@ -42,6 +42,11 @@ export const ProductCardSales = (props: productProps) => {
   return (
     <div key={props.product.id} className="group">
     <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+    {props.product.featured===true&&
+            <>
+              <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-2xl mb-4">FEATURED PRODUCT!!!</h1>
+            </>
+            }
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
