@@ -47,7 +47,7 @@ export const ProductCard = (props: productProps) => {
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
     
     <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
-    <p className="mt-1 text-lg font-medium text-gray-900 mb-4">${props.product.price}</p>
+    <p className="mt-1 text-lg font-medium text-gray-900 mb-4">${props.product.price.toFixed(2)}</p>
    
     {/* User UI */}
     <div className="px-2 py-2 text-center sm:px-2 mx-2">
