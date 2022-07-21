@@ -22,7 +22,7 @@ export default function Login({logged}:Logger) {
 
   return (
     <>
-    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full pb-32 bg-white dark:bg-slate-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
@@ -31,7 +31,7 @@ export default function Login({logged}:Logger) {
             alt="Colonel Kernel"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-green-500">Sign In</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-gray-600 dark:text-white">
             And{' '}
             <a href="#" className="font-medium text-yellow-600 hover:text-yellow-500">
               start shopping today!
