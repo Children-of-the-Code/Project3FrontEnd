@@ -7,6 +7,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
+import { Percent } from "@mui/icons-material";
 
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
@@ -68,6 +69,18 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
             <a onClick={() => {navigate('/products')}} className="text-md no-underline text-orange-600 ml-2 px-1">
               <Badge>
                 GO SHOPPING <StorefrontOutlined />
+              </Badge>
+            </a>
+
+            <a onClick={() => {navigate('/featured')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+              <Badge>
+                FEATURED <Stars /> 
+              </Badge>
+            </a>
+
+            <a onClick={() => {navigate('/sales')}} className="text-md no-underline text-orange-600 ml-2 px-1">
+              <Badge>
+                SALE <Percent /> 
               </Badge>
             </a>
           
