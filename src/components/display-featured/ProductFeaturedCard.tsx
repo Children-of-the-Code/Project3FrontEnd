@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../context/cart.context";
 import Product from "../../models/Product";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
@@ -27,19 +27,9 @@ export const ProductCardFeatured = (props: productProps) => {
 
     setCart(newCart)
   }
-
-  const removeItemToCart = (product: Product) => {
-
-    const newCart = [...cart]
-    const index = newCart.findIndex((searchProduct) => {
-      return searchProduct.id === product.id
-    })
-
-    if (index === -1) newCart.push(product)
-    else newCart[index].quantity -= product.quantity
-
-    setCart(newCart)
-  }
+  useEffect(()=>{
+    console.log(props.product.sale)
+  })
   return (
     <div key={props.product.id} className="group">
     <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
@@ -47,8 +37,15 @@ export const ProductCardFeatured = (props: productProps) => {
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
-    <p className="mt-1 text-lg font-medium text-gray-900">${props.product.price.toFixed(2)}</p>
-    {/* User UI */}
+    {props.product.sale>0&&<>
+    <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700">Sale: %{props.product.sale}</h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${(props.product.price).toFixed(2)}</h3>
+    </>
+    }
+    {props.product.sale===0&&<>
+    <p className="mt-1 text-lg font-medium text-gray-900">Price: ${(props.product.price).toFixed(2)}</p>
+    </>}    {/* User UI */}
     <div className="px-2 py-2 text-center sm:px-2 mx-2">
     <Link to={`/products/${props.product.id}`} >
     <button type="submit" className="inline-flex justify-center py-2 px-4 mx-2 mb-2 border border-transparent shadow-sm text-xs font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
