@@ -37,13 +37,13 @@ export const ProductCardFeatured = (props: productProps) => {
     </div>
     <h3 className="mt-4 text-lg font-medium text-green-500">{props.product.name}</h3>
     {props.product.sale>0&&<>
-    <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700 dark:text-white">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
     <h3 className="mt-4 text-md font-medium text-red-500">Sale: %{props.product.sale}</h3>
-    <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${(props.product.price).toFixed(2)}</h3>
+    <h3 className="mt-4 text-md font-medium text-gray-700 dark:text-white">New Price: ${(props.product.price).toFixed(2)}</h3>
     </>
     }
     {props.product.sale===0&&<>
-    <p className="mt-1 text-lg font-medium text-gray-900">Price: ${(props.product.price).toFixed(2)}</p>
+    <p className="mt-1 text-lg font-medium text-gray-900 dark:text-white">Price: ${(props.product.price).toFixed(2)}</p>
     </>}    {/* User UI */}
     <div className="px-2 py-2 text-center sm:px-2 mx-2">
     <Link to={`/products/${props.product.id}`} >
