@@ -50,9 +50,7 @@ export const ProductCard = (props: productProps) => {
       <img src={props.product.image} alt={props.product.name} className="object-fill h-48 w-96 group-hover:opacity-75"/>
     </div>
     <h3 className="mt-4 text-lg font-medium text-gray-700">{props.product.name}</h3>
-    
-    <h3 className="mt-4 text-md font-medium text-gray-700">{props.product.description}</h3>
-    {props.product.sale>0&&<>
+        {props.product.sale>0&&<>
     <h3 className="mt-4 text-md font-medium text-gray-700">Old Price: $<s>{((props.product.price)/((100-props.product.sale)/100)).toFixed(2)}</s></h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">Sale: %{props.product.sale}</h3>
     <h3 className="mt-4 text-md font-medium text-gray-700">New Price: ${(props.product.price).toFixed(2)}</h3>
