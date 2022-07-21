@@ -40,7 +40,7 @@ export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
 
 
 export const apiUpsertProduct = async (product: any): Promise<eCommerceApiResponse> => {
-    const response = await eCommerceClient.put<any>(
+    const response = await eCommerceClient.post<any>(
         `${baseURL}`,
         product
     );
