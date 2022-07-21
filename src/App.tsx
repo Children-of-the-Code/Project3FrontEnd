@@ -9,7 +9,7 @@ import Checkout from './components/checkout/Checkout';
 import { DisplayProducts } from "./components/display-products/DisplayProducts";
 import Login from './components/login/Login';
 import Register from './components/register/Register';
-import Navbar from './components/navbar/Navbar'
+import Navbar from './components/navbar/Navbar';
 import Landing from './components/landing/Landing';
 import { DisplayFeaturedProducts } from './components/display-featured/DisplayFeatured';
 import { DisplaySales } from './components/display-sales/DisplaySales';

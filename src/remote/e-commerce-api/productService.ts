@@ -32,6 +32,7 @@ export const apiGetProductsOnSale = async (): Promise<eCommerceApiResponse> => {
     return { status: response.status, payload: response.data };
 }
 
+
 export const apiUpsertProduct = async (product: any): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.put<any>(
         `${baseURL}`,
@@ -77,9 +78,11 @@ export const apiDeleteFeaturedProduct = async (id: number): Promise<eCommerceApi
     );
     return { status: response.status, payload: response.data };
 }
-export const apiUpdateSale = async (id: any, sale: number): Promise<eCommerceApiResponse> => {
+export const apiUpdateSale = async (id: number, sale: number): Promise<eCommerceApiResponse> => {
     const response = await eCommerceClient.post<any>(
-        `${baseURL}/${'sale'}`,
+        `${baseURL}/sale`,
+        ({id:id,
+        sale:sale})
     );
     return { status: response.status, payload: response.data };
 }
