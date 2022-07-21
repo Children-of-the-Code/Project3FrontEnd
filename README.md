@@ -10,7 +10,7 @@
 <h3 align="center">Colonel Kernel</h3>
 
   <p align="center">
-    E-Commerce application for selling all types of corn. There's cob corn, cream corn, whole kernel corn, canned corn, corn soup, corn salad, blue corn, deer corn, corn bread, waxy corn, flint corn, white corn, red corn, yellow corn, corndogs...
+    E-Commerce application for selling organic produce. 
     <br />
     <a href="https://github.com/Children-of-the-Code/Project3FrontEnd"><strong>Explore the docs »</strong></a>
     <br />
