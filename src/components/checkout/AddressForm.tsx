@@ -29,7 +29,7 @@ export default function AddressForm(props: addressFormProps) {
   return (
     <>
      <div className="mt-10 sm:mt-0">
-     <h1 className="font-semibold text-2xl">Shipping Address</h1>
+     <h1 className="font-semibold text-green-500 text-2xl">Shipping Address</h1>
     <div className="mt-5 md:mt-0 md:col-span-2">
       <form onSubmit={handleSubmit}>
         <div className="shadow overflow-hidden sm:rounded-md">
@@ -124,7 +124,7 @@ export default function AddressForm(props: addressFormProps) {
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Next
             </button>
           </div>

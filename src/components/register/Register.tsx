@@ -28,7 +28,7 @@ export default function Register() {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-green-500">Register</h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             And{' '}
-            <a href="#" className="font-medium text-yellow-600 hover:text-yellow-500">
+            <a href="#" className="font-medium text-yellow-500 hover:text-yellow-500">
               start shopping today!
             </a>
           </p>
@@ -97,7 +97,7 @@ export default function Register() {
           <div className="flex items-center justify-between">
 
             <div className="text-sm">
-              <a onClick={() => {navigate('/login')}} className="font-medium text-orange-600 hover:text-orange-500">
+              <a onClick={() => {navigate('/login')}} className="font-medium text-orange-500 hover:text-orange-500">
                Already Registerd? Sign In!
               </a>
             </div>
@@ -106,7 +106,7 @@ export default function Register() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <LockClosedIcon className="h-5 w-5 text-yellow-500 group-hover:text-yellow-400" aria-hidden="true" />

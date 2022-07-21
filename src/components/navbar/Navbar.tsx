@@ -9,6 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Colonel from '../../assets/colonel.png';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 
 const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Function}> = ({login, id, role,handleClick}) => {
@@ -50,17 +51,17 @@ const Navbar: React.FC<{login:boolean, id:number, role:string, handleClick:Funct
           </a>
           <a onClick={() => { navigate('/Admin-featured-Products'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
                 <Badge>
-                  EDIT FEATURED <AppRegistrationOutlinedIcon/>
+                  EDIT FEATURED <EditOutlinedIcon/>
                 </Badge>
               </a>
               <a onClick={() => { navigate('/Admin-ProductONSale'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
                 <Badge> 
-                  EDIT SALES <AppRegistrationOutlinedIcon/>
+                  EDIT SALES <EditOutlinedIcon/>
                 </Badge>
               </a>
               <a onClick={() => { navigate('/Admin-All-Products'); } } className="text-sm cursor-pointer no-underline text-purple-600 ml-2 px-1">
                 <Badge>
-                  PRODUCTS <AppRegistrationOutlinedIcon/>
+                  PRODUCTS <EditOutlinedIcon/>
                 </Badge>
               </a>
           
