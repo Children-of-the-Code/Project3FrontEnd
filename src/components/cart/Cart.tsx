@@ -78,7 +78,7 @@ export const Cart = () => {
             </div>
           </div>
           <div className="flex justify-center w-1/5">
-            <button onClick={() => {decrement({...product, quantity: 1})}}>-</button>
+            <button onClick={() => {if(product.quantity>0){decrement({...product, quantity: 1})}}}>-</button>
               <input className="mx-2 border text-center w-8" type="text" value={product.quantity} />
             <button onClick={() => {increment({...product, quantity: 1})}}>+</button>
           </div>
