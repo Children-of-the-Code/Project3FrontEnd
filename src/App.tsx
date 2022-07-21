@@ -11,11 +11,14 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Navbar from './components/navbar/Navbar';
 import Landing from './components/landing/Landing';
+import { DisplayFeaturedProducts } from './components/display-featured/DisplayFeatured';
+import { DisplaySales } from './components/display-sales/DisplaySales';
 import { AddProduct } from './components/AdminProducts/AddProducts';
 import { DisplayFeaturedProduct } from './components/Admin-featured-Products/DisplayFeaturedProducts';
 import { DisplayAllProducts } from './components/Admin-All-Products/Display-All-Products';
 import {DisplayProductsOnSale} from './components/Admin-ProductOnSale/DisplayProductsOnSale';
 import ProductDetail  from './components/display-products/ProductDetail';
+
 
 function App() {
   const [cart, setCart] = useState<ProductItem[]>([]);
@@ -63,6 +66,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         {login.logged&&
         <>
+         <Route path="/featured" element={<DisplayFeaturedProducts />} /> 
+          <Route path="/sales" element={<DisplaySales />} />
           <Route path="/products" element={<DisplayProducts />} />
           <Route path="/products/:id" element={<ProductDetail/>} />
         </>
